@@ -23,7 +23,8 @@ export abstract class DefaultListView<T> extends BaseList<T>  {
 	icon = '';
 
 	abstract viewParts: any[];
-
+	abstract formEditTitle: string;
+	abstract formAddTitle: string
 	constructor(
 		protected layoutUtils: LayoutUtilsService,
 		protected dialogForm: ComponentType<BaseDialogForm<T>> | ComponentType<BaseRoutingForm<T>>,
@@ -40,11 +41,11 @@ export abstract class DefaultListView<T> extends BaseList<T>  {
 
 	addEntity() {
 		if (this.dialogForm)
-			this.layoutUtils.open(this.dialogForm);
+			this.layoutUtils.open(this.dialogForm, {options: {header: this.formAddTitle}});
 	}
 
 	editEntity(id) {
-		this.layoutUtils.open(this.dialogForm, { data: { id: id } });
+		this.layoutUtils.open(this.dialogForm, { data: { id: id }, options: {header: this.formEditTitle}});
 	}
 
 	viewEntity(id) {
