@@ -1,0 +1,5 @@
+<div class="d-flex">
+    <button class="btn btn-outline-primary" *ngIf="viewEvent.observers.length > 0" (click)="viewEvent.emit()">View</button>
+    <button class="btn btn-light-primary" *ngIf="editEvent.observers.length > 0" (click)="editEvent.emit()">Edit</button>
+    <button class="btn btn-light-danger" *ngIf="deleteEvent.observers.length > 0" (click)="deleteEvent.emit()">Delete</button>
+</div>

@@ -1,0 +1,22 @@
+<app-card [title]="title" (close)="closeForm()">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" 
+                formControlName="name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                    placeholder="Enter email" formControlName="email">
+            </div>
+            <div class="form-group col-md-6"                                                                                >
+                <label for="gender">Phone</label>
+                <input type="gender" class="form-control" id="gender" aria-describedby="emailHelp"
+                    placeholder="Enter email" >
+            </div>{{form.value}}
+        </div>
+    </form>
+    <app-form-footer (cancel)="closeForm()" (save)="save(true)"></app-form-footer>
+</app-card>

@@ -1,0 +1,14 @@
+<div class="card mb-5 mb-xl-8 w-100" [ngClass]="{'shadow':!showCloseButton}">
+    <div class="card-header mb-5 d-flex justify-content-between align-items-start">
+        <span>{{title}}</span>
+        <i class="bi bi-x-lg cursor-pointer" *ngIf="showCloseButton" (click)='close.emit()'>
+        </i>
+        </div>
+    <div class="card-body py-3">
+        <h6 class="card-subtitle mb-2 text-muted" *ngIf="subtitle">{{subtitle}}</h6>
+        <ng-content></ng-content>
+    </div>
+    <div class="card-footer">
+        <ng-content select="[card-footer],app-form-footer"></ng-content>
+    </div>
+</div>

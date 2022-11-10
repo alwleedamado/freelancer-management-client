@@ -11,6 +11,15 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers, reducers } from 'core/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { MergedRouterStateSerializer } from 'core/reducers/router-state/merged-route-serialzer';
+import { RouterEffect } from 'core/reducers/router-state/router.effects';
+import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from 'core/core.module';
 
 @NgModule({
     declarations: [
@@ -18,7 +27,19 @@ import { PhotoService } from './demo/service/photo.service';
     ],
     imports: [
         AppRoutingModule,
-        AppLayoutModule
+        AppLayoutModule,
+        HttpClientModule,
+        CoreModule,
+        StoreModule.forRoot(reducers, { metaReducers }),
+        StoreDevtoolsModule.instrument({
+          autoPause: true
+        }),
+        EffectsModule.forRoot([RouterEffect]),
+
+        StoreRouterConnectingModule.forRoot({
+          stateKey: 'router',
+          serializer: MergedRouterStateSerializer
+        }),
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

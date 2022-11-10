@@ -1,0 +1,47 @@
+<app-card [title]="title">
+	<app-list-toolbar (create)="addEntity()"></app-list-toolbar>
+    <div class="table-responsive">
+
+        <table cdk-table [dataSource]="dataSource.items$" table-css>
+
+            <ng-container cdkColumnDef="id">
+				<th cdk-header-cell *cdkHeaderCellDef>ID
+					<app-sort-icon column="id" [sortState]="dataSource.sortState$|async"
+						(sort)="sortChange($event)">
+					</app-sort-icon>
+				</th>                            
+				<td cdk-cell *cdkCellDef="let entity"> {{ entity?.id }}</td>
+			</ng-container>
+
+            <ng-container cdkColumnDef="name">
+				<th cdk-header-cell *cdkHeaderCellDef>Name
+					<app-sort-icon column="name" [sortState]="dataSource.sortState$|async"
+						(sort)="sortChange($event)">
+					</app-sort-icon>
+				</th>                            
+				<td cdk-cell *cdkCellDef="let entity"> {{ entity?.id }}</td>
+			</ng-container>
+
+            <ng-container cdkColumnDef="email">
+				<th cdk-header-cell *cdkHeaderCellDef>Email
+					<app-sort-icon column="email" [sortState]="dataSource.sortState$|async"
+						(sort)="sortChange($event)">
+					</app-sort-icon>
+				</th>                            
+				<td cdk-cell *cdkCellDef="let entity"> {{ entity?.id }}</td>
+			</ng-container>
+
+            <ng-container cdkColumnDef="phone">
+				<th cdk-header-cell *cdkHeaderCellDef>Phone
+					<app-sort-icon column="phone" [sortState]="dataSource.sortState$|async"
+						(sort)="sortChange($event)">
+					</app-sort-icon>
+				</th>                            
+				<td cdk-cell *cdkCellDef="let entity"> {{ entity?.id }}</td>
+			</ng-container>
+
+            <tr cdk-header-row *cdkHeaderRowDef="columns" class="fw-bolder text-muted bg-light"></tr>
+			<tr cdk-row *cdkRowDef="let row; columns: columns;"></tr>
+        </table>
+    </div>
+</app-card>
