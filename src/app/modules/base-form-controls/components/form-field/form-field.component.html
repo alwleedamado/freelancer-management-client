@@ -1,0 +1,8 @@
+<div class="flex mb-4 gap-2" [class.flex-column]="mode == 'stacked'">
+    <label [class.md:col-4]="mode != 'stacked'" *ngIf="label">
+        <span [class.font-bold]="isRequired">{{label}}</span>
+    </label>
+    <div [class.md:col-8]="mode != 'stacked'">
+        <ng-content></ng-content>
+    </div>
+</div>
