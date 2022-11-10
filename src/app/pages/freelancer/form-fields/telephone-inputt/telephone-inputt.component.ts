@@ -1,10 +1,8 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormControl, NgControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
-import { Telephone } from 'pages/freelancer/models/telephone';
-import { DropdownItem } from 'primeng/dropdown';
-import { BaseControlalueAccessor } from 'utils/helpers/base-control-value-accessor';
-import { PhoneType } from 'freelancer/models/phone-type'
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { PhoneType } from 'freelancer/models/phone-type';
 import { combineLatest } from 'rxjs';
+
 @Component({
   selector: 'app-telephone-inputt',
   templateUrl: './telephone-inputt.component.html',
