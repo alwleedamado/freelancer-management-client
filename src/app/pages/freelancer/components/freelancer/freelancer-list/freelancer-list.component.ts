@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'core/reducers';
+import { statics } from 'pages/freelancer/freelancer.statics';
 import { Freelancer } from 'pages/freelancer/models/freelancer';
 import { FreelancerActoins, FreelancerDataSource, FreelancerSelectors } from 'pages/freelancer/state/freelancer';
 import { BehaviorSubject } from 'rxjs';
@@ -15,7 +16,9 @@ import { FreelancerFormComponent } from '../freelancer-form/freelancer-form.comp
   styleUrls: ['./freelancer-list.component.scss']
 })
 export class FreelancerListComponent extends DefaultListView<Freelancer> {
-  viewParts: any[];
+  formEditTitle: string = "Edit Freelancer";
+  formAddTitle: string = "Create New Freelancer";
+  viewParts: any[] = [statics.urls.root];
   title: string = 'Freelancer';
   columns: string[] = ['id', 'name', 'email', 'phone'];
   dataSource: NgrxDataSource<Freelancer>
