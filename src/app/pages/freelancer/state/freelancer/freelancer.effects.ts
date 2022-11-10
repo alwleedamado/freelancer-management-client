@@ -11,7 +11,7 @@ import { selectors } from './freelancer.selectors';
 
 @Injectable()
 export class FreelancerEffects extends BaseEffect<Freelancer> {
-    idSelector(entity: Freelancer) {
+    override idSelector(entity: Freelancer) {
         return entity.id //select the id property
     }
 

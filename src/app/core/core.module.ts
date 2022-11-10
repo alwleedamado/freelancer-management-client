@@ -7,6 +7,11 @@ import { InterceptService } from './services/intercept.service';
 import { PromptComponent } from './components/prompt/prompt.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { FormFooterComponent } from './components/form-footer/form-footer.component';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ToastService } from './services/toast.service';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,10 @@ import { FormFooterComponent } from './components/form-footer/form-footer.compon
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    TableModule,
+    ButtonModule,
+    DynamicDialogModule,
+    
     // Components
     CardComponent,
     PromptComponent,
@@ -37,7 +45,9 @@ import { FormFooterComponent } from './components/form-footer/form-footer.compon
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptService,
       multi: true
-    }
+    },
+    DialogService,
+    MessageService
   ]
 })
 export class CoreModule { }

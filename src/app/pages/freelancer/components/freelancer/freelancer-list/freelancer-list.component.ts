@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'core/reducers';
 import { Freelancer } from 'pages/freelancer/models/freelancer';
@@ -20,10 +19,10 @@ export class FreelancerListComponent extends DefaultListView<Freelancer> {
   title: string = 'Freelancer';
   columns: string[] = ['id', 'name', 'email', 'phone'];
   dataSource: NgrxDataSource<Freelancer>
-loadingS$ = new BehaviorSubject<boolean>(false);
+  loadingS$ = new BehaviorSubject<boolean>(false);
   constructor(layoutUtils: LayoutUtilsService,
-     store: Store<AppState>) {
-    super(layoutUtils,FreelancerFormComponent,store, FreelancerActoins, FreelancerSelectors);
+    store: Store<AppState>) {
+    super(layoutUtils, FreelancerFormComponent, store, FreelancerActoins, FreelancerSelectors);
     this.dataSource = new FreelancerDataSource(this.store)
   }
 }

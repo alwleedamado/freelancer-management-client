@@ -22,10 +22,10 @@ export abstract class BaseDialogForm<T> extends BaseForm<T> {
 
     constructor(
         store: Store<AppState>,
-        public ref: DynamicDialogRef,
-        public config: DynamicDialogConfig,
-        msgService: MessageService,
         layout: LayoutUtilsService,
+        protected ref: DynamicDialogRef,
+        config: DynamicDialogConfig,
+        msgService: MessageService,
         actions: IngrxActions<T>,
         selectors: IngrxSelectors<T>,
     ) {

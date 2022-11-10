@@ -1,6 +1,6 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { TypedAction } from '@ngrx/store/models';
+import { TypedAction } from '@ngrx/store/src/models';
 import { AppState } from 'core/reducers';
 import { registerError } from 'core/reducers/error-state/error-state.actions';
 import uiActions from 'core/reducers/ui-state/ui-state.actions';

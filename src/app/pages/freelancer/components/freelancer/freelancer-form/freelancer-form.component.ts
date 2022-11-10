@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { AppState } from 'core/reducers';
 import { Freelancer } from 'freelancer/models/freelancer';
 import { FreelancerActoins, FreelancerSelectors } from 'pages/freelancer/state/freelancer';
+import { MessageService } from 'primeng/api';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { LayoutUtilsService } from 'shared/services/layout-utils.service';
 import { BaseDialogForm } from 'utils/base-components/form/base-dialog-form';
 
@@ -16,18 +17,20 @@ import { BaseDialogForm } from 'utils/base-components/form/base-dialog-form';
 export class FreelancerFormComponent extends BaseDialogForm<Freelancer> {
   title: string = "Create New Freelancer  ";
   constructor(
-    store: Store<AppState>, 
+    store: Store<AppState>,
     layoutService: LayoutUtilsService,
-    dialogRef: NgbActiveModal
-    ) {
-    super(store, layoutService, dialogRef, FreelancerActoins, FreelancerSelectors)
-   }
+    ref: DynamicDialogRef,
+    msg: MessageService,
+    public config: DynamicDialogConfig,
+  ) {
+    super(store, layoutService, ref, config, msg, FreelancerActoins, FreelancerSelectors)
+  }
   createForm() {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       phone: new FormControl('male', [Validators.required]),
-      
+
     })
   }
   storeSubscriptions() {

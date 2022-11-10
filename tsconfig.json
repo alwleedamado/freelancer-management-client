@@ -30,7 +30,7 @@
             "shared/*":["app/shared/*"],
             "utils/*":["app/utils/*"],
             "freelancer/*":["app/pages/freelancer/*"],
-            "dashboard/*":["app/pages/dashboard/*"]
+            "dashboard/*":["app/pages/dashboard/*"],
             
           }
     },
