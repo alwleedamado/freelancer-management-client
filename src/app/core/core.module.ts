@@ -12,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ToastService } from './services/toast.service';
 import { MessageService } from 'primeng/api';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,6 @@ import { MessageService } from 'primeng/api';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    CdkTableModule,
     
   ],
   exports:[
@@ -34,7 +34,7 @@ import { MessageService } from 'primeng/api';
     TableModule,
     ButtonModule,
     DynamicDialogModule,
-    
+    PaginatorModule,
     // Components
     CardComponent,
     PromptComponent,

@@ -1,5 +1,6 @@
 import { OnDestroy, OnInit } from "@angular/core";
 import { IPageState, ISortState } from "core/models";
+import { SortEvent } from "primeng/api";
 import { Observable } from "rxjs";
 
 export interface IBaseList extends OnInit, OnDestroy {
@@ -12,8 +13,8 @@ export interface IBaseList extends OnInit, OnDestroy {
 
     loadList(resetPaginator: boolean);
 
-    sortChange(sort: ISortState);
-    paginatorChange(page: IPageState);
+    sortChange(sort: SortEvent);
+    pagenatorChange(page: IPageState);
 
     addEntity();
     deleteEntity(id);

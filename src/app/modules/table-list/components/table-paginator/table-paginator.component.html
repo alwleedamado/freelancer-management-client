@@ -1,0 +1,4 @@
+<div class="d-flex">
+    <i class="pi pi-spin pi-spinner" *ngIf="loading" style="font-size: 1rem"></i>
+    <p-paginator [rows]="pageState.pageSize" totalRecords="pageState.total" (onPageChange)="pageniate($event)"></p-paginator>
+</div>

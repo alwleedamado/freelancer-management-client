@@ -1,8 +1,10 @@
 import { ComponentType } from "@angular/cdk/portal";
 import { Injectable } from "@angular/core";
 import { select, Store } from "@ngrx/store";
+import { IPageState, ISortState } from "core/models";
 import { AppState } from "core/reducers";
 import routerActions from "core/reducers/router-state/router.actions";
+import { SortEvent } from "primeng/api";
 import { skip, takeWhile } from "rxjs/operators";
 import { LayoutUtilsService } from "shared/services/layout-utils.service";
 import { IngrxActions, IngrxSelectors } from "utils/models/ngrx";

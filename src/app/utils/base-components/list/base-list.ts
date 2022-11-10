@@ -4,6 +4,7 @@ import { IPageState, ISortState, QueryParamsModel } from "core/models";
 import { AppState } from "core/reducers";
 import { routerSelectors } from "core/reducers/router-state/router.selectors";
 import produce from "immer";
+import { SortEvent } from "primeng/api";
 import { Observable } from "rxjs";
 import { takeWhile } from "rxjs/operators";
 import { IngrxActions, IngrxSelectors } from "utils/models/ngrx";
@@ -85,15 +86,15 @@ export abstract class BaseList<T> implements IBaseList {
 		this.componentActive = false;
 	}
 
-	sortChange(sort: ISortState) {
+	sortChange(sort: SortEvent) {
 		this.currentQueryParams = produce(this.currentQueryParams, query => {
-			query.sortField = sort.sortField;
-			query.sortOrder = sort.sortOrder;
+			query.sortField = sort.field;
+			query.sortOrder = sort.order == 1 ? 'asc': 'desc';
 		});
 		this.loadList();
 	};
 
-	paginatorChange(page: IPageState) {
+	pagenatorChange(page: IPageState) {
 		this.currentQueryParams = produce(this.currentQueryParams, query => {
 			query.pageSize = page.pageSize;
 			query.pageNumber = page.pageNumber;
