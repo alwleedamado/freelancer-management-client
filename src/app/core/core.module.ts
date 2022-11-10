@@ -15,12 +15,18 @@ import { MessageService } from 'primeng/api';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { AutoCompleteModule } from "primeng/autocomplete";
+import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
+import { BaseFormControlsModule } from 'modules/base-form-controls/base-form-controls.module';
 
 @NgModule({
   declarations: [
     CardComponent,
     PromptComponent,
-    FormFooterComponent
+    FormFooterComponent,
+    // Pipes
+    EnumToArrayPipe
+
   ],
   imports: [
     CommonModule,
@@ -29,7 +35,9 @@ import { DropdownModule } from 'primeng/dropdown';
     // Prome modules
     InputTextModule,
     ButtonModule,
-    DropdownModule
+    DropdownModule,
+    AutoCompleteModule,
+    // Pipes
 
   ],
   exports: [
@@ -43,10 +51,15 @@ import { DropdownModule } from 'primeng/dropdown';
     DynamicDialogModule,
     PaginatorModule,
     InputTextModule,
+
     // Components
     CardComponent,
     PromptComponent,
-    FormFooterComponent
+    FormFooterComponent,
+
+    // Pipes
+    EnumToArrayPipe
+
   ],
   providers: [
     {
