@@ -71,7 +71,7 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
         this.cleanForm()
     }
 
-    save(closeAfter: boolean = true) {console.log('base form reached', this.id)
+    save(closeAfter: boolean = true) {
         if (this.form.valid) {
             this.closeAfterAction = closeAfter;
             if (this.id)

@@ -13,10 +13,10 @@ export class FormFooterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cancel() {debugger
+  cancel() {
     this.cancelEvent.emit()
   }
-  save() {console.log('form footer save')
+  save() {
     this.saveEvent.emit()
   }
 }
