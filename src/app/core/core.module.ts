@@ -18,6 +18,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
 import { BaseFormControlsModule } from 'modules/base-form-controls/base-form-controls.module';
+import { FieldViewComponent } from './components/field-view/field-view.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BaseFormControlsModule } from 'modules/base-form-controls/base-form-con
     PromptComponent,
     FormFooterComponent,
     // Pipes
-    EnumToArrayPipe
+    EnumToArrayPipe,
+    FieldViewComponent
 
   ],
   imports: [
@@ -56,6 +58,7 @@ import { BaseFormControlsModule } from 'modules/base-form-controls/base-form-con
     CardComponent,
     PromptComponent,
     FormFooterComponent,
+    FieldViewComponent,
 
     // Pipes
     EnumToArrayPipe
