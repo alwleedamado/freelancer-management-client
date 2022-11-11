@@ -10,6 +10,7 @@ import { FreelancerViewComponent } from './components/freelancer/freelancer-view
 import { statics } from './freelancer.statics';
 import { FreelancerEffects } from './state/freelancer/freelancer.effects';
 import {reducres } from 'freelancer/state/freelancer.base.state'
+import { FormFieldsModule } from './form-fields/form-fields.module';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {reducres } from 'freelancer/state/freelancer.base.state'
     ]),
     RouterModule.forChild([
       {path: '', component: FreelancerListComponent}
-    ])
+    ]),
+    FormFieldsModule
   ]
 })
 export class FreelancerModule { }
