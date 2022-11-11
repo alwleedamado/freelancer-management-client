@@ -103,7 +103,11 @@ export abstract class BaseList<T> implements IBaseList {
 	};
 
 
-	loadList() {
+	loadList(event?: any) {
+		this.currentQueryParams = produce(this.currentQueryParams, query => {
+			query.sortField = event.sortField;
+			query.sortOrder = event.sortOrder == 1 ? 'asc': 'desc';
+		});
 		this.store.dispatch(this.actions.load({ page: this.currentQueryParams }));
 	}
 }

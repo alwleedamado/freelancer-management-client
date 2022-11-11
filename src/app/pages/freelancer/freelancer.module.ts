@@ -27,7 +27,8 @@ import { FormFieldsModule } from './form-fields/form-fields.module';
       FreelancerEffects
     ]),
     RouterModule.forChild([
-      {path: '', component: FreelancerListComponent}
+      {path: '', component: FreelancerListComponent},
+      {path: 'view/:id', component: FreelancerViewComponent}
     ]),
     FormFieldsModule
   ]

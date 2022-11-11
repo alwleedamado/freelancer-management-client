@@ -1,1 +1,7 @@
-<p>freelancer-single-detail works!</p>
+<app-card [title]="title" *ngIf="(entity$|async) as i">
+    <div class="grid">
+        <app-field-view class="col-12 md:col-6" label="Name" [value]="i.name"></app-field-view>
+        <app-field-view class="col-12 md:col-6" label="Email" [value]="i.email"></app-field-view>
+        <app-field-view class="col-12 md:col-6" label="Gender" [value]="i.gender"></app-field-view>
+    </div>
+</app-card>

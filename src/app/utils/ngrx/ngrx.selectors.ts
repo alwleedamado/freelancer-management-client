@@ -159,7 +159,7 @@ export function createSelectors<T>(adapter: EntityAdapter<T>, stateSelector: Mem
         selectLastQuery,
         (data, query) => {
             return data
-                .slice(query.pageNumber * query.pageSize, (query.pageNumber + 1) * query.pageSize)
+                // .slice(query.pageNumber * query.pageSize, (query.pageNumber + 1) * query.pageSize)
 
         }
     )
