@@ -28,8 +28,8 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {
                         label: FreelancersStatics.moduleName,
-                        icon: 'pi pi-fw pi-globe',
-                        routerLink: ['pages',FreelancersStatics.urls.root]
+                        icon: 'pi pi-fw pi-user',
+                        routerLink: [FreelancersStatics.urls.root]
                     },
                 ]
             }

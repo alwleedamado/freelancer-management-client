@@ -9,8 +9,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
             {
                 path: '', component: AppLayoutComponent,
                 children: [
-                    { path: '', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
-                    { path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) }
+                    { path: '', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) }
                 ]
             },
             { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
