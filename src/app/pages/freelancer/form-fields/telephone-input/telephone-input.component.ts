@@ -4,18 +4,18 @@ import { PhoneType } from 'freelancer/models/phone-type';
 import { combineLatest } from 'rxjs';
 
 @Component({
-  selector: 'app-telephone-inputt',
-  templateUrl: './telephone-inputt.component.html',
-  styleUrls: ['./telephone-inputt.component.scss'],
+  selector: 'app-telephone-input',
+  templateUrl: './telephone-input.component.html',
+  styleUrls: ['./telephone-input.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TelephoneInputtComponent),
+      useExisting: forwardRef(() => TelephoneInputComponent),
       multi: true
     }
   ]
 })
-export class TelephoneInputtComponent implements ControlValueAccessor, OnInit {
+export class TelephoneInputComponent implements ControlValueAccessor, OnInit {
   PhoneType = PhoneType;
   public readonly phoneTypeControl = new FormControl();
   public readonly phoneNumberControl = new FormControl()

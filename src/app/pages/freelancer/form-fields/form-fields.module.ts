@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CoreModule } from 'core/core.module';
-import { TelephoneInputtComponent } from './telephone-inputt/telephone-inputt.component';
+import { TelephoneInputComponent } from './telephone-input/telephone-input.component';
 
 
 
 @NgModule({
   declarations: [
-    TelephoneInputtComponent
+    TelephoneInputComponent
   ],
   imports: [
     CoreModule
   ],
   exports: [
-    TelephoneInputtComponent
+    TelephoneInputComponent
   ]
 })
 export class FormFieldsModule { }
