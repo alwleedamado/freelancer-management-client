@@ -130,7 +130,7 @@ export function createSelectors<T>(adapter: EntityAdapter<T>, stateSelector: Mem
         selectData,
         selectLastQuery,
         (data, query) => {
-            let filter = query.filter ? query.filter.toLowerCase() : '';
+            let filter =  '';
             return data
                 .filter(x => x["name"] === undefined || (x["name"] as string).toLowerCase().indexOf(filter) != -1)
                 .sort((a, b) => {

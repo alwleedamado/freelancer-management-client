@@ -4,7 +4,6 @@ import { SortDirection } from "./sort-state.model";
 
 
 export interface QueryParamsModel {
-    filter: string;
     sortOrder: SortDirection; // asc || desc
     sortField: string;
     pageNumber: number;
@@ -14,9 +13,8 @@ export interface QueryParamsModel {
 
 export function defaultQuery(): QueryParamsModel {
     return {
-        filter: "",
         sortOrder: "desc", // asc || desc
-        sortField: null,
+        sortField: 'id',
         pageNumber: 1,
         pageSize: 10,
         entityFilters: {},

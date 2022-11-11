@@ -10,6 +10,9 @@ export class InterceptService implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const started = Date.now();
+        // req = req.clone({
+        //     setHeaders
+        // })
         return next.handle(req).pipe(
             tap(event => {
                 if (event instanceof HttpResponse) {

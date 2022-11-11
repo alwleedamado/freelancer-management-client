@@ -40,9 +40,11 @@ export class TelephoneInputComponent implements ControlValueAccessor, OnInit {
     if (obj) {
       this.phoneNumberControl.setValue(obj.telephoneNumber)
       this.phoneTypeControl.setValue({ name: obj.phoneType, code: obj.phoneType })
+    } else {
+      this.phoneNumberControl.reset()
+      this.phoneTypeControl.reset()
     }
   }
-
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
