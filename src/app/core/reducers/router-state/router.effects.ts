@@ -35,7 +35,7 @@ export class RouterEffect {
         else {
             var route = [];
             url.forEach(part => {
-                route.push(...part.split('/'));
+                part.split ? route.push(...part.split('/')) : route.push(part);
             });
             this.router.navigate(route, extras);
         }
