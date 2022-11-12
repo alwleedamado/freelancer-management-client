@@ -1,7 +1,7 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PhoneType } from 'freelancer/models/phone-type';
-import { combineLatest } from 'rxjs';
+import { combineLatest, filter } from 'rxjs';
 
 @Component({
   selector: 'app-telephone-input',
@@ -22,8 +22,8 @@ export class TelephoneInputComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit(): void {
     combineLatest([
-      this.phoneTypeControl.valueChanges,
-      this.phoneNumberControl.valueChanges]
+      this.phoneTypeControl.valueChanges.pipe(filter(e => e)),
+      this.phoneNumberControl.valueChanges.pipe(filter(e => e))]
     ).subscribe(([phoneType, telephoneNumber]) => {
       const value = {
         phoneType: phoneType.code,
