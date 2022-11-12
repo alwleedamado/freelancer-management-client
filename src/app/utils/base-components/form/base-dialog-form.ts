@@ -14,6 +14,7 @@ import { BaseForm } from "./base-form";
 
 @Injectable()
 export abstract class BaseDialogForm<T> extends BaseForm<T> {
+    [x: string]: any;
 
     @Input() override id;
     @Input() params: any;
@@ -34,6 +35,9 @@ export abstract class BaseDialogForm<T> extends BaseForm<T> {
 
 
     ngOnInit() {
+        this.config?.data && 
+        Object.keys(this.config?.data).forEach(key => this[key] = this.config.data[key])
+        
         if (this.form) {
             this.form.get('id')?.setValue(this.id);
         }
