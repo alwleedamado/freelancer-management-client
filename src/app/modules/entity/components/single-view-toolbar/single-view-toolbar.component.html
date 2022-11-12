@@ -1,4 +1,4 @@
 <div class="flex justify-content-end">
-    <button pButton class="p-button p-button-outlined" label="Edit" iconPos="right" icon="pi pi-pencil"></button>
-    <button pButton class="p-button p-button-outlined p-button-danger" label="Delete" iconPos="right" icon="pi pi-trash"></button>
+    <button pButton class="p-button p-button-outlined" label="Edit" iconPos="right" icon="pi pi-pencil" (click)="edit.emit()"></button>
+    <button pButton class="p-button p-button-outlined p-button-danger" label="Delete" iconPos="right" icon="pi pi-trash" (click)="delete.emit()"></button>
 </div>
