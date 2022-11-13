@@ -27,5 +27,6 @@ export class FreelancerListComponent extends DefaultListView<Freelancer> {
     store: Store<AppState>) {
     super(layoutUtils, FreelancerFormComponent, store, FreelancerActoins, FreelancerSelectors);
     this.dataSource = new FreelancerDataSource(this.store)
+layoutUtils.showInfo('test', 'testetet')
   }
 }

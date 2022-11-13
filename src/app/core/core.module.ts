@@ -19,7 +19,8 @@ import { AutoCompleteModule } from "primeng/autocomplete";
 import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
 import { BaseFormControlsModule } from 'modules/base-form-controls/base-form-controls.module';
 import { FieldViewComponent } from './components/field-view/field-view.component';
-
+import {MessageModule} from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [
     CardComponent,
@@ -39,6 +40,8 @@ import { FieldViewComponent } from './components/field-view/field-view.component
     ButtonModule,
     DropdownModule,
     AutoCompleteModule,
+    ToastModule,
+    MessageModule
     // Pipes
 
   ],
@@ -53,6 +56,8 @@ import { FieldViewComponent } from './components/field-view/field-view.component
     DynamicDialogModule,
     PaginatorModule,
     InputTextModule,
+ToastModule,
+    MessageModule,
 
     // Components
     CardComponent,

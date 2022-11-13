@@ -18,6 +18,7 @@ import { ToastModule } from 'primeng/toast';
   ],
   exports:[
     CoreModule,
+    ToastModule,
     TableListModule,
     BaseFormControlsModule,
     EntityModule
