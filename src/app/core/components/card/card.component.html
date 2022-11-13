@@ -1,6 +1,7 @@
 <div class="card mb-5 lg:mb-8 w-100 shadow">
     <div class="card-header mb-5 flex justify-content-between align-items-start flex-nowrap">
         <div class="card-title align-self-start">
+            <i class="pi pi-chevron-left cursor-pointer mx-2" *ngIf="showGoBack" (click)="goBack()"></i>
             <span>{{title}}</span>
         </div>
         <div class="card-toolbar">
