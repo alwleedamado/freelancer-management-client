@@ -1,9 +1,11 @@
 export const statics = {
     moduleName: 'Freelancers',
     components: {
-        Freelancer: 'Freelancer'
+        Freelancer: 'Freelancer',
+        Speciality: "Speciality"
     },
     urls: {
-        root: 'freelancers'
+        root: 'freelancers',
+        Speciality: 'specialities'
     }
 }

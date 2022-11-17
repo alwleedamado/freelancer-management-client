@@ -22,11 +22,11 @@ export class FreelancerListComponent extends DefaultListView<Freelancer> {
   title: string = 'Freelancer';
   columns: string[] = ['id', 'name', 'email', 'phone'];
   dataSource: NgrxDataSource<Freelancer>
-  loadingS$ = new BehaviorSubject<boolean>(false);
+
   constructor(layoutUtils: LayoutUtilsService,
     store: Store<AppState>) {
     super(layoutUtils, FreelancerFormComponent, store, FreelancerActoins, FreelancerSelectors);
     this.dataSource = new FreelancerDataSource(this.store)
-layoutUtils.showInfo('test', 'testetet')
+    layoutUtils.showInfo('test', 'testetet')
   }
 }

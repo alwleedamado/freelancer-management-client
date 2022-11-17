@@ -1,16 +1,14 @@
 import { Injectable } from "@angular/core";
 import { select, Store } from "@ngrx/store";
-import { IPageState, ISortState, QueryParamsModel } from "core/models";
+import { IPageState, QueryParamsModel } from "core/models";
 import { AppState } from "core/reducers";
 import { routerSelectors } from "core/reducers/router-state/router.selectors";
 import produce from "immer";
-import { SortEvent } from "primeng/api";
 import { Observable } from "rxjs";
-import { takeWhile } from "rxjs/operators";
 import { IngrxActions, IngrxSelectors } from "utils/models/ngrx";
 import { RouteData } from "utils/models/route-data";
 import { NgrxDataSource } from "utils/ngrx/ngrx.datasource";
-import { IBaseList } from "./i-base-list";
+import { IBaseList } from "./base-lsit.interface";
 
 @Injectable()
 export abstract class BaseList<T> implements IBaseList {
@@ -86,13 +84,6 @@ export abstract class BaseList<T> implements IBaseList {
 		this.componentActive = false;
 	}
 
-	sortChange(sort: SortEvent) {
-		this.currentQueryParams = produce(this.currentQueryParams, query => {
-			query.sortField = sort.field;
-			query.sortOrder = sort.order == 1 ? 'asc': 'desc';
-		});
-		this.loadList();
-	};
 
 	pagenatorChange(page: IPageState) {
 		this.currentQueryParams = produce(this.currentQueryParams, query => {
@@ -106,7 +97,7 @@ export abstract class BaseList<T> implements IBaseList {
 	loadList(event?: any) {
 		this.currentQueryParams = produce(this.currentQueryParams, query => {
 			query.sortField = event.sortField;
-			query.sortOrder = event.sortOrder == 1 ? 'asc': 'desc';
+			query.sortOrder = event.sortOrder == 1 ? 'asc' : 'desc';
 		});
 		this.store.dispatch(this.actions.load({ page: this.currentQueryParams }));
 	}

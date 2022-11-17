@@ -11,14 +11,12 @@ export interface IBaseList extends OnInit, OnDestroy {
     columns: string[];
     componentActive: boolean;
 
-    loadList(resetPaginator: boolean);
+    loadList(lazyTableEvent: any): void;
 
-    sortChange(sort: SortEvent);
-    pagenatorChange(page: IPageState);
 
-    addEntity();
-    deleteEntity(id);
-    editEntity(id);
-    viewEntity(id);
+    addEntity(): void;
+    deleteEntity(id): void;
+    editEntity(id): void;
+    viewEntity(id): void;
 
 }

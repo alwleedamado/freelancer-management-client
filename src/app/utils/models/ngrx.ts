@@ -3,7 +3,7 @@ import { ActionCreator, DefaultProjectorFn, MemoizedSelector } from "@ngrx/store
 import { TypedAction } from "@ngrx/store/src/models";
 import { IPageState, ISortState, QueryParamsModel } from "core/models";
 import { communicationResult } from "utils/models/communicationResult";
-import { CustomError } from "./custom-error";
+import { CustomError } from "../../core/models/custom-error";
 
 export interface IngrxActions<T> {
     initialLoad: ActionCreator<string, () => TypedAction<string>>,
@@ -58,7 +58,7 @@ export interface IngrxSelectors<T> {
     selectActionsLoading: MemoizedSelector<object, boolean, DefaultProjectorFn<boolean>>,
     selectExtraActionsLoading: MemoizedSelector<object, boolean, DefaultProjectorFn<boolean>>,
     selectLastCreatedId: MemoizedSelector<object, string | number, DefaultProjectorFn<string | number>>,
-    selectLastCreatedEntity:  MemoizedSelector<object, T, DefaultProjectorFn<T>>,
+    selectLastCreatedEntity: MemoizedSelector<object, T, DefaultProjectorFn<T>>,
     selectTotalCount: MemoizedSelector<object, number, DefaultProjectorFn<number>>,
     selectLastQuery: MemoizedSelector<object, QueryParamsModel, DefaultProjectorFn<QueryParamsModel>>,
     selectEntityFilter: MemoizedSelector<object, any, DefaultProjectorFn<any>>,

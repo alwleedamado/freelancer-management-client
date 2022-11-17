@@ -17,19 +17,10 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
 
     abstract title: string;
 
-    abstract closeForm();
+    abstract closeForm(): void;
     abstract ngOnInit();
 
-    // abstract returnUrl: string[];
-    // abstract editUrl: string[];
-
     entity: T;
-
-    findEntityInStore = true;
-
-    defaultCreateCompleteSubscription = true;
-    defaultUpdateCompleteSubscription = true;
-    defaultDeleteCompleteSubscription = true;
 
     isFormEnabled = true;
 
@@ -39,7 +30,6 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
     id: string | number;
     form: FormGroup;
 
-    //For Data Reset
     formBase: any;
 
 
@@ -99,7 +89,6 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
         }
 
         this.afterFormInit(entity);
-
     }
 
     cleanForm() {
@@ -122,8 +111,8 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
     }
 
     afterFormInit(entity?: Partial<T>) { }
-    
-    abstract formValue();
-    abstract createForm();
-    abstract storeSubscriptions();
+
+    abstract formValue(): T;
+    abstract createForm(): void;
+    abstract storeSubscriptions(): void;
 }

@@ -1,6 +1,7 @@
 export const endpoints = {
     Freelancer: {
         base: '',
-        Freelancer: 'Persons'
+        Freelancer: 'Persons',
+        Speciality: 'Specialities'
     }
 }

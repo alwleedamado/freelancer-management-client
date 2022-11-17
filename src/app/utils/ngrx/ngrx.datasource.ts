@@ -3,7 +3,7 @@ import { IPageState, ISortState } from 'core/models';
 import { AppState } from 'core/reducers';
 import { Observable } from 'rxjs';
 import { IDataSource } from 'utils/models/data-source';
-import { CustomError } from 'utils/models/custom-error';
+import { CustomError } from 'core/models/custom-error';
 import { IngrxSelectors } from 'utils/models/ngrx';
 
 export class NgrxDataSource<T> implements IDataSource<T> {

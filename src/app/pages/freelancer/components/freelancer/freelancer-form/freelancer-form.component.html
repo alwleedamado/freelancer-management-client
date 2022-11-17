@@ -1,16 +1,16 @@
 <form [formGroup]="form">
     <div class="p-fluid p-formgrid grid">
         <app-form-field label="Name" class="field col-12 md:col-6">
-            <input pInputText id="name" type="text" formControlName='name'/>
+            <input pInputText id="name" type="text" formControlName='name' />
         </app-form-field>
         <app-form-field label="Email" class="col-12 md:col-6">
-                <input pInputText id="email" type="email" formControlName='email'/>
+            <input pInputText id="email" type="email" formControlName='email' />
         </app-form-field>
         <app-form-field label="Gender" class="col-12 md:col-6">
             <app-gender-input formControlName='gender'></app-gender-input>
         </app-form-field>
         <app-form-field label="Phones" class="col-12 md:col-6">
-            <ng-container formArrayName="phone">
+            <ng-container formArrayName="telephones">
                 <div *ngFor="let cntl of phoneArray.controls; let i=index" class="flex flex-nowrap mb-2">
                     <app-telephone-input [formControlName]="i" class="w-full"></app-telephone-input>
                     <button pButton type="button" class="pi pi-trash p-button-danger p-button-icon-only"

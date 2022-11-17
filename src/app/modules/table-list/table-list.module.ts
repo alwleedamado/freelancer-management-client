@@ -10,7 +10,7 @@ import { TablePaginatorComponent } from './components/table-paginator/table-pagi
     TableCssDirective,
     ListToolbarComponent,
     TableActionsComponent,
-    TablePaginatorComponent
+    TablePaginatorComponent,
   ],
   imports: [
     CoreModule,

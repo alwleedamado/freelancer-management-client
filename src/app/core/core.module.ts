@@ -17,10 +17,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
-import { BaseFormControlsModule } from 'modules/base-form-controls/base-form-controls.module';
 import { FieldViewComponent } from './components/field-view/field-view.component';
-import {MessageModule} from 'primeng/message';
+import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
+import { ChipModule } from 'primeng/chip'
 @NgModule({
   declarations: [
     CardComponent,
@@ -56,8 +56,9 @@ import { ToastModule } from 'primeng/toast';
     DynamicDialogModule,
     PaginatorModule,
     InputTextModule,
-ToastModule,
+    ToastModule,
     MessageModule,
+    ChipModule,
 
     // Components
     CardComponent,

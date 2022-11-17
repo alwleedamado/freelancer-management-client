@@ -9,8 +9,11 @@ import { FreelancerSingleDetailComponent } from './components/freelancer/freelan
 import { FreelancerViewComponent } from './components/freelancer/freelancer-view/freelancer-view.component';
 import { statics } from './freelancer.statics';
 import { FreelancerEffects } from './state/freelancer/freelancer.effects';
-import {reducres } from 'freelancer/state/freelancer.base.state'
+import { reducres } from 'freelancer/state/freelancer.base.state'
 import { FormFieldsModule } from './form-fields/form-fields.module';
+import { SpecialityListComponent } from './components/speciality/speciality-list/speciality-list.component';
+import { SpecialityFormComponent } from './components/speciality/speciality-form/speciality-form.component';
+import { ChipModule } from 'primeng/chip';
 
 
 @NgModule({
@@ -18,17 +21,20 @@ import { FormFieldsModule } from './form-fields/form-fields.module';
     FreelancerListComponent,
     FreelancerFormComponent,
     FreelancerViewComponent,
-    FreelancerSingleDetailComponent
+    FreelancerSingleDetailComponent,
+    SpecialityListComponent,
+    SpecialityFormComponent
   ],
   imports: [
     SharedModule,
+    ChipModule,
     StoreModule.forFeature(statics.moduleName, reducres),
     EffectsModule.forFeature([
       FreelancerEffects
     ]),
     RouterModule.forChild([
-      {path: '', component: FreelancerListComponent},
-      {path: 'view/:id', component: FreelancerViewComponent}
+      { path: '', component: FreelancerListComponent },
+      { path: 'view/:id', component: FreelancerViewComponent }
     ]),
     FormFieldsModule
   ]

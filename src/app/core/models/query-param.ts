@@ -1,10 +1,5 @@
-import { SortDirection } from "./sort-state.model";
-
-
-
-
 export interface QueryParamsModel {
-    sortOrder: SortDirection; // asc || desc
+    sortOrder: 'asc' | 'desc';
     sortField: string;
     pageNumber: number;
     pageSize: number;
@@ -13,7 +8,7 @@ export interface QueryParamsModel {
 
 export function defaultQuery(): QueryParamsModel {
     return {
-        sortOrder: "desc", // asc || desc
+        sortOrder: "desc",
         sortField: 'id',
         pageNumber: 1,
         pageSize: 10,

@@ -6,7 +6,7 @@ import { environment } from "environments/environment";
 import { DialogService, DynamicDialogConfig } from "primeng/dynamicdialog";
 import { from, Observable, of, Subscription } from "rxjs";
 import { catchError, take } from "rxjs/operators";
-import { CustomError } from "utils/models/custom-error";
+import { CustomError } from "core/models/custom-error";
 import { DialogConfig } from "utils/models/dialog-config.model";
 import { PromptParts } from "utils/models/prompt";
 
@@ -32,35 +32,20 @@ export class LayoutUtilsService {
 
     open(componentRef: any, config?: DialogConfig): Observable<any> {
         let ref = this.dialog.open(componentRef, { ...this.modalOptions, ...config?.options, data: config?.data });
-        return from(ref.onClose)
-            .pipe(
-                take(1),
-                catchError(err => {
-                    console.error(err)
-                    return of(null);
-                }))
-
+        return ref.onClose;
     }
 
-    showSuccess(_message: any, _title?: any) {
-        return this.toastService.showSuccess(_title, _message)
+    showSuccess(message: any, title?: any) {
+        return this.toastService.showSuccess(title, message)
     }
 
-    showInfo(_message: any, _title?: any) {
-        return this.toastService.showInfo(_title, _message)
+    showInfo(message: any, title?: any) {
+        return this.toastService.showInfo(title, message)
     }
 
 
     showError(error: CustomError) {
-        if (!environment.production && error.details)
-            console.log("ERROR: ", error);
-        let msg = error.message;
-
-        if (error.formErrors && error.formErrors.trim) // formerror is string
-            msg = error.formErrors;
-
         return this.toastService.showError(error.title, error.message)
-
     }
 
     deletePrompt(prompt?: PromptParts): Observable<boolean> {
@@ -69,9 +54,8 @@ export class LayoutUtilsService {
             message: prompt?.message ?? "Are you sure to delete this entity",
             yesLabel: prompt?.yesLabel ?? "Delete",
             noLabel: prompt?.noLabel ?? "Cancel",
-
-            yesCssClass: prompt?.yesCssClass ?? "btn btn-outline-danger",
-            noCssClass: prompt?.noCssClass ?? "btn btn-light",
+            yesCssClass: prompt?.yesCssClass ?? "p-button p-button-outline p-button-danger",
+            noCssClass: prompt?.noCssClass ?? "p-button p-button-light",
         }
         return this.prompt(p);
     }

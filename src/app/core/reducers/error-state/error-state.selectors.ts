@@ -2,9 +2,9 @@ import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { ErrorState } from "./error-state.reducer";
 
 
-export const selectErrorState = createFeatureSelector<ErrorState>("errorState");
+export const errorStateFeatcureSelector = createFeatureSelector<ErrorState>("generalError");
 
 export const selectLastError = createSelector(
-    selectErrorState,
-    state => state.error
+    errorStateFeatcureSelector,
+    state => state.lastError
 )

@@ -25,7 +25,7 @@ export abstract class BaseDialogForm<T> extends BaseForm<T> {
         store: Store<AppState>,
         layout: LayoutUtilsService,
         protected ref: DynamicDialogRef,
-        config: DynamicDialogConfig,
+        private config: DynamicDialogConfig,
         msgService: MessageService,
         actions: IngrxActions<T>,
         selectors: IngrxSelectors<T>,
@@ -35,9 +35,11 @@ export abstract class BaseDialogForm<T> extends BaseForm<T> {
 
 
     ngOnInit() {
-        this.config?.data && 
-        Object.keys(this.config?.data).forEach(key => this[key] = this.config.data[key])
-        
+        // populate components fields
+        // todo limit it to only accept @Input() props
+        this.config?.data &&
+            Object.keys(this.config?.data).forEach(key => this[key] = this.config.data[key])
+
         if (this.form) {
             this.form.get('id')?.setValue(this.id);
         }
@@ -60,46 +62,8 @@ export abstract class BaseDialogForm<T> extends BaseForm<T> {
             });
         }
         else {
-            this.params = this.params ?? {};
-
-            this.store.pipe(
-                select(routerSelectors.queryParams),
-                map(params => ({ ...params, ...this.params })),
-                take(1)
-            ).subscribe(params => {
-                this.form.patchValue(params);
-            })
-
             this.initForm();
         }
-
-
-
-        combineLatest([
-            this.store.select(this.selectors.selectLastCreatedId),
-            this.store.select(this.selectors.selectAddResult)])
-            .pipe(
-                takeWhile(() => this.componentActive && this.defaultCreateCompleteSubscription),
-                skip(1),
-                filter(([id, result]) => result == communicationResult.success)
-            )
-            .subscribe(([id, result]) => {
-                if (result == communicationResult.success) {
-                    this.layout.showSuccess("TOASTS.CREATED");
-                    this.closeForm({ ...this.formValue(), id }); // always pass the Id property as ID;
-                }
-            });
-
-        this.store
-            .pipe(
-                select(this.selectors.selectUpdateResult),
-                takeWhile(() => this.componentActive && this.defaultUpdateCompleteSubscription),
-                skip(1),
-                filter(result => result == communicationResult.success))
-            .subscribe(() => {
-                this.layout.showSuccess("TOASTS.UPDATED");
-                this.closeForm({ ...this.formValue(), id: this.id }); // always pass the Id property as ID;
-            });
 
         this.storeSubscriptions();
 
