@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './components/card/card.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { InterceptService } from './services/intercept.service';
+import { LoggingInterceptor } from './services/intercept.service';
 import { PromptComponent } from './components/prompt/prompt.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { FormFooterComponent } from './components/form-footer/form-footer.component';
@@ -73,7 +73,7 @@ import { ChipModule } from 'primeng/chip'
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: InterceptService,
+      useClass: LoggingInterceptor,
       multi: true
     },
     DialogService,

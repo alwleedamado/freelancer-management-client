@@ -45,8 +45,7 @@ export abstract class BaseDialogForm<T> extends BaseForm<T> {
         }
 
         if (this.isEdit) {
-
-            this.store.dispatch(this.findEntityInStore ? this.actions.initialFind({ id: this.id }) : this.actions.find({ id: this.id }))
+            this.store.dispatch(this.actions.find({ id: this.id }))
 
             this.entity$ = this.store.pipe(
                 takeWhile(() => this.componentActive),
@@ -56,8 +55,7 @@ export abstract class BaseDialogForm<T> extends BaseForm<T> {
             this.entity$.subscribe(res => {
                 this.entity = res;
                 if (res) {
-                    //Use Immer to take deep copy of the object and use it to avoid change store with the form object
-                    this.initForm(produce(res, newRes => { }))
+                    this.initForm(produce(res, _ => { }))
                 }
             });
         }

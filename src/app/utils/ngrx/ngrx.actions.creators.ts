@@ -1,5 +1,6 @@
 import { createAction, props } from "@ngrx/store";
-import { QueryParamsModel } from "core/models";
+import { QueryParams } from "core/models";
+import { stringify } from "querystring";
 import { IngrxActions } from "utils/models/ngrx";
 
 export function ngrxActionName(moduleName: string, componentName: string) {
@@ -8,44 +9,45 @@ export function ngrxActionName(moduleName: string, componentName: string) {
 
 export function createActions<T>(moduleName: string, componentName: string): IngrxActions<T> {
 
-    let sharedName = ngrxActionName(moduleName, componentName);
+    let actionName = ngrxActionName(moduleName, componentName);
 
     let actionTypes = {
         //Load if not loaded before
-        initialLoad: `${sharedName} initial Load Data Request`,
+        initialLoad: `${actionName} initial Load Data Request`,
 
 
-        load: `${sharedName} Load Data Request`,
-        loadComplete: `${sharedName} Load Data Complete`,
-        loadFail: `${sharedName} Load Data Failed`,
-        loadCancel: `${sharedName} Load Data Cancel`,
+        load: `${actionName} Load Data Request`,
+        loadComplete: `${actionName} Load Data Complete`,
+        loadFail: `${actionName} Load Data Failed`,
+        loadCanceled: `${actionName} Load List Canceled`,
 
-        initialFind: `${sharedName} Initial find By Id`,
-        find: `${sharedName} find By Id Request`,
-        findComplete: `${sharedName} find By Id Compelte`,
-        findFail: `${sharedName} find By Id Failed`,
+        find: `${actionName} find By Id Request`,
+        findSucceeded: `${actionName} find By Id Succeeceded`,
+        findFailed: `${actionName} find By Id Failed`,
 
-        addNew: `${sharedName} add New Request`,
-        addNewComplete: `${sharedName} add New Compelte`,
-        addNewFail: `${sharedName} add New Failed`,
+        createEntity: `${actionName} add New Request`,
+        createEntitySucceeded: `${actionName} Created New Entity Successfully`,
+        createEntityFailed: `${actionName} Entiy Creation Failed`,
 
-        updateRequest: `${sharedName} Update Request`,
-        update: `${sharedName} Update Request (Depricated Action)`,
-        updateComplete: `${sharedName} Update Complete`,
-        updateFail: `${sharedName} Update Failed`,
+        updateEntity: `${actionName} Update Request`,
+        updateEntitySucceeded: `${actionName} Updated Entity Successfully`,
+        updateEntityFailed: `${actionName} Update Entity Failed`,
 
-        delete: `${sharedName} Delete Request`,
-        deleteComplete: `${sharedName} Delete Complete`,
-        deleteFail: `${sharedName} Delete Failed`,
+        deleteEntity: `${actionName} Delete Entity Request`,
+        deleteEntitySucceeded: `${actionName} Delete Complete`,
+        deleteEntityFailed: `${actionName} Delete Failed`,
 
-        clearList: `${sharedName} clearList`,
-        toggleLoading: `${sharedName} ToggleLoading`,
+        toggleLoading: `${actionName} ToggleLoading`,
 
-        getAllRequest: `${sharedName} Get All Request`,
-        getAllComplete: `${sharedName} Get All Complete`,
-        getAllFail: `${sharedName} Get All Failed`,
+        getAllRequest: `${actionName} Get All Request`,
+        getAllComplete: `${actionName} Get All Complete`,
+        getAllFail: `${actionName} Get All Failed`,
+        showSuccessToast: `${actionName} Show Success Toast`,
+        showErrorToast: `${actionName} Show Error Toast`,
+        showInfoToast: `${actionName} Show Info Toast`,
+        showWarningToast: `${actionName} Show Warning Toast`,
 
-        setQueryParam: `${sharedName} Set Query Param`,
+        setQueryParam: `${actionName} Set Query Param`,
 
     }
 
@@ -53,37 +55,39 @@ export function createActions<T>(moduleName: string, componentName: string): Ing
 
         initialLoad: createAction(actionTypes.initialLoad),
 
-        load: createAction(actionTypes.load, props<{ page: QueryParamsModel }>()),
-        loadComplete: createAction(actionTypes.loadComplete, props<{ data: T[], totalCount: number, page: QueryParamsModel }>()),
+        load: createAction(actionTypes.load, props<{ page: QueryParams }>()),
+        loadComplete: createAction(actionTypes.loadComplete, props<{ data: T[], totalCount: number, page: QueryParams }>()),
         loadFail: createAction(actionTypes.loadFail, props<{ error: any }>()),
-        loadCancel: createAction(actionTypes.loadCancel),
+        loadCanceled: createAction(actionTypes.loadCanceled),
 
-        addNew: createAction(actionTypes.addNew, props<{ payload: T }>()),
-        addNewComplete: createAction(actionTypes.addNewComplete, props<{ payload: T }>()),
-        addNewFail: createAction(actionTypes.addNewFail, props<{ error: any }>()),
+        createEntity: createAction(actionTypes.createEntity, props<{ payload: T }>()),
+        createEntitySucceeded: createAction(actionTypes.createEntitySucceeded, props<{ payload: T }>()),
+        createEntityFailed: createAction(actionTypes.createEntityFailed, props<{ error: any }>()),
 
         initialFind: createAction(actionTypes.find, props<{ id }>()),
         find: createAction(actionTypes.find, props<{ id: string | number }>()),
-        findComplete: createAction(actionTypes.findComplete, props<{ payload: T }>()),
-        findFail: createAction(actionTypes.findFail, props<{ error: any }>()),
+        findSucceeded: createAction(actionTypes.findSucceeded, props<{ payload: T }>()),
+        findFail: createAction(actionTypes.findFailed, props<{ error: any }>()),
 
-        updateRequest: createAction(actionTypes.updateRequest, props<{ id: string | number, data: T }>()),
-        update: createAction(actionTypes.update, props<{ changes: Partial<T>, id: T }>()),
-        updateComplete: createAction(actionTypes.updateComplete, props<{ data: T }>()),
-        updateFail: createAction(actionTypes.updateFail, props<{ error: any, id: number | string }>()),
+        updateEntity: createAction(actionTypes.updateEntity, props<{ id: string | number, data: T }>()),
+        updateEntitySucceeded: createAction(actionTypes.updateEntitySucceeded, props<{ data: T }>()),
+        updateEntityFailed: createAction(actionTypes.updateEntityFailed, props<{ error: any, id: number | string }>()),
 
-        deleteEntity: createAction(actionTypes.delete, props<{ id: string | number }>()),
-        deleteComplete: createAction(actionTypes.deleteComplete, props<{ payload: string | number }>()),
-        deleteFail: createAction(actionTypes.deleteFail, props<{ error: any, id: number | string }>()),
+        deleteEntity: createAction(actionTypes.deleteEntity, props<{ id: string | number }>()),
+        deleteEntitySucceeded: createAction(actionTypes.deleteEntitySucceeded, props<{ payload: string | number }>()),
+        deleteEntityFailed: createAction(actionTypes.deleteEntityFailed, props<{ error: any, id: number | string }>()),
 
-        clearList: createAction(actionTypes.clearList),
         toggleLoading: createAction(actionTypes.toggleLoading),
 
         getAllRequest: createAction(actionTypes.getAllRequest),
         getAllComplete: createAction(actionTypes.getAllComplete, props<{ data: T[] }>()),
         getAllFail: createAction(actionTypes.getAllFail, props<{ error: any }>()),
+        showSuccessToast: createAction(actionTypes.showSuccessToast, props<{ title: string, message?: string }>()),
+        showErrorToast: createAction(actionTypes.showSuccessToast, props<{ title: string, message?: string }>()),
+        showInfoToast: createAction(actionTypes.showSuccessToast, props<{ title: string, message?: string }>()),
+        showWarningToast: createAction(actionTypes.showSuccessToast, props<{ title: string, message?: string }>()),
 
-        setQueryParam: createAction(actionTypes.setQueryParam, props<{ query: QueryParamsModel }>()),
+        setQueryParam: createAction(actionTypes.setQueryParam, props<{ query: QueryParams }>()),
 
 
     }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'core/reducers';
 import { BaseEffect } from 'utils/ngrx/ngrx.effects';
-import { Speciality } from 'freelancer/models/speciality';
+import { SpecialityType } from 'pages/freelancer/models/speciality-type';
 import { actions } from './speciality.actions';
 import { Actions } from '@ngrx/effects';
 import { SpecialityService } from 'freelancer/services/speciality.service';
@@ -10,8 +10,8 @@ import { selectors } from './speciality.selectors';
 
 
 @Injectable()
-export class SpecialityEffects extends BaseEffect<Speciality> {
-    override idSelector(entity: Speciality) {
+export class SpecialityEffects extends BaseEffect<SpecialityType> {
+    override idSelector(entity: SpecialityType) {
         return entity.id //select the id property
     }
 

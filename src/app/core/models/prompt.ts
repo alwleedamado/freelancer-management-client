@@ -1,10 +1,11 @@
-export interface PromptParts {
-    title: string,
-    message?: string,
-    yesLabel?: string,
-    noLabel?: string
-    
-    yesCssClass?:string
-    noCssClass?:string
+export interface Prompt {
+    title: string;
+    message?: string;
+    okButtonLabel?: string;
+    okButtonClass?: string;
+    okButtonIcon?: string;
+    cancelButtonLabel?: string;
+    cancelButtonClass?: string;
+    cancelButtonIcon?: string;
 }
 

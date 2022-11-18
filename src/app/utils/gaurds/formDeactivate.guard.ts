@@ -3,21 +3,21 @@ import { CanDeactivate } from "@angular/router";
 import { Observable, of } from "rxjs";
 import { LayoutUtilsService } from "shared/services/layout-utils.service";
 import { IGuardableForm } from "utils/models/IGuardableForm";
-import { PromptParts } from "utils/models/prompt";
+import { Prompt } from "core/models/prompt";
 
 @Injectable({ providedIn: 'root' })
 export class FormDeactivateGuardService implements CanDeactivate<IGuardableForm>{
 
-    constructor(public layoutUtilsService:LayoutUtilsService) { }
+    constructor(public layoutUtilsService: LayoutUtilsService) { }
 
     canDeactivate(component: IGuardableForm): Observable<boolean> {
 
         if (component.isDirty && component.isDirty()) {
-            let prompt: PromptParts = {
+            let prompt: Prompt = {
                 title: "PROMPTS.LOSING_DATA",
                 message: "PROMPTS.DISCARD_CHANGE",
-                noLabel: "PROMPTS.CONTINUE_EDIT",
-                yesLabel: "BUTTONS.DISCARD",
+                cancelButtonLabel: "PROMPTS.CONTINUE_EDIT",
+                okButtonLabel: "BUTTONS.DISCARD",
             }
 
             return this.layoutUtilsService.prompt(prompt);

@@ -1,9 +1,8 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { communicationResult } from "utils/models/communicationResult";
+import { createFeatureSelector } from "@ngrx/store";
 import { UiState } from "./ui-state.reducer";
 
 
-const selectUiState = createFeatureSelector<UiState>("ui");
+const uiStateFeatureSelector = createFeatureSelector<UiState>("ui");
 
 
 

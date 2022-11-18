@@ -54,17 +54,17 @@ export function getDefaultOns<T>(adapter: EntityAdapter<T>, actions: IngrxAction
         on(actions.find, (state: IngrxState<T>) => {
             return { ...state, findResult: communicationResult.request }
         }),
-        on(actions.findComplete, (state: IngrxState<T>, { payload }) => {
+        on(actions.findSucceeded, (state: IngrxState<T>, { payload }) => {
             return adapter.upsertOne(payload, { ...state, findResult: communicationResult.success, lastLoadedId: adapter.selectId(payload), currentEntity: payload })
         }),
         on(actions.findFail, (state: IngrxState<T>, payload) => {
             return { ...state, findResult: communicationResult.fail, error: payload }
         }),
 
-        on(actions.addNew, (state: IngrxState<T>) => {
+        on(actions.createEntity, (state: IngrxState<T>) => {
             return { ...state, actionsloading: true, lastCreatedId: undefined, addResult: communicationResult.request }
         }),
-        on(actions.addNewComplete, (state: IngrxState<T>, { payload }) => {
+        on(actions.createEntitySucceeded, (state: IngrxState<T>, { payload }) => {
             let { selectAll } = adapter.getSelectors();
             var queryRowsCount = state.queryRowsCount + 1;
             var newEntitites = [payload, ...selectAll(state)].slice(0, state.lastQuery.pageSize);
@@ -79,33 +79,24 @@ export function getDefaultOns<T>(adapter: EntityAdapter<T>, actions: IngrxAction
                     queryRowsCount
                 })
         }),
-        on(actions.addNewFail, (state: IngrxState<T>, payload) => {
+        on(actions.createEntityFailed, (state: IngrxState<T>, payload) => {
             return { ...state, actionsloading: false, error: payload, addResult: communicationResult.fail }
         }),
 
-        on(actions.update, (state: IngrxState<T>, { changes, id }) => {
-            let update: Update<T> = {
-                id,
-                changes
-            }
-
-            return adapter.updateOne(update, state);
-        }),
-
-        on(actions.updateRequest, (state: IngrxState<T>) => {
+        on(actions.updateEntity, (state: IngrxState<T>) => {
             return { ...state, actionsloading: true, updateResult: communicationResult.request }
         }),
-        on(actions.updateComplete, (state: IngrxState<T>, payload) => {
-            return adapter.upsertOne(payload.data, { ...state, actionsloading: false, updateResult: communicationResult.success })
+        on(actions.createEntitySucceeded, (state: IngrxState<T>, { payload }) => {
+            return adapter.upsertOne(payload, { ...state, actionsloading: false, updateResult: communicationResult.success })
         }),
-        on(actions.updateFail, (state: IngrxState<T>, payload) => {
+        on(actions.updateEntityFailed, (state: IngrxState<T>, payload) => {
             return { ...state, actionsloading: false, error: payload, updateResult: communicationResult.fail }
         }),
 
         on(actions.deleteEntity, (state: IngrxState<T>) => {
             return { ...state, actionsloading: true, deleteResult: communicationResult.request }
         }),
-        on(actions.deleteComplete, (state: IngrxState<T>, { payload }) => {
+        on(actions.deleteEntitySucceeded, (state: IngrxState<T>, { payload }) => {
             var queryRowsCount = state.queryRowsCount - 1;
             return adapter.removeOne(<string>payload, {
                 ...state,
@@ -114,12 +105,8 @@ export function getDefaultOns<T>(adapter: EntityAdapter<T>, actions: IngrxAction
                 queryRowsCount
             })
         }),
-        on(actions.deleteFail, (state: IngrxState<T>, payload) => {
+        on(actions.deleteEntityFailed, (state: IngrxState<T>, payload) => {
             return { ...state, actionsloading: false, error: payload, deleteResult: communicationResult.fail }
-        }),
-
-        on(actions.clearList, (state: IngrxState<T>) => {
-            return adapter.removeAll({ ...state })
         }),
 
         on(actions.toggleLoading, (state: IngrxState<T>) => {

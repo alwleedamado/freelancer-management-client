@@ -48,7 +48,7 @@ export class FreelancerFormComponent extends BaseDialogForm<Freelancer> {
       this.phoneArray.controls.push(control)
     })
   }
-  addNewPhone() {
+  createEntityPhone() {
     this.phoneArray.push(new FormControl(this.emptyPhoneControl.value))
     this.emptyPhoneControl.reset()
   }

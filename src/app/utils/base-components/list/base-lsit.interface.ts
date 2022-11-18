@@ -1,5 +1,5 @@
 import { OnDestroy, OnInit } from "@angular/core";
-import { IPageState, ISortState } from "core/models";
+import { PageState, SortState } from "core/models";
 import { SortEvent } from "primeng/api";
 import { Observable } from "rxjs";
 

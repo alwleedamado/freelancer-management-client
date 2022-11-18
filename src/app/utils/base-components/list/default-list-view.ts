@@ -49,7 +49,7 @@ export abstract class DefaultListView<T> extends BaseList<T>  {
 	}
 
 	deleteEntity(id) {
-		this.layoutUtils.deletePrompt().subscribe(result => {
+		this.layoutUtils.openDeletePrompt().subscribe(result => {
 			if (result)
 				this.store.dispatch(this.actions.deleteEntity({ id }))
 		})

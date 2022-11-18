@@ -1,15 +1,15 @@
 import { createSelector } from "@ngrx/store";
-import { Speciality } from "freelancer/models/speciality";
+import { SpecialityType } from "pages/freelancer/models/speciality-type";
 import { IngrxSelectors } from "utils/models/ngrx";
 import { createSelectors } from "utils/ngrx/ngrx.selectors";
 import { FrelancerBaseStateFeactureSelector } from "../freelancer.base.state";
 import { adapter } from './speciality.reducers';
 
 export const stateSateSelector = createSelector(
-    FrelancerBaseStateFeactureSelector, (state) => state.Speciality
+    FrelancerBaseStateFeactureSelector, (state) => state.SpecialityType
 )
 
-export interface SpecialitySelectors extends IngrxSelectors<Speciality> {
+export interface SpecialitySelectors extends IngrxSelectors<SpecialityType> {
 
 }
 

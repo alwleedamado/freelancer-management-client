@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IPageState } from 'core/models';
+import { PageState } from 'core/models';
 
 @Component({
   selector: 'app-table-paginator',
@@ -8,7 +8,7 @@ import { IPageState } from 'core/models';
 })
 export class TablePaginatorComponent implements OnInit {
 
-  @Input() pageState: IPageState;
+  @Input() pageState: PageState;
   @Input() loading: boolean;
   @Output('pagenate') pageChanged = new EventEmitter();
 

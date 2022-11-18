@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { DialogConfig } from 'utils/models/dialog-config.model';
 
 @Component({
   selector: 'app-prompt',
@@ -10,11 +9,15 @@ import { DialogConfig } from 'utils/models/dialog-config.model';
 export class PromptComponent implements OnInit {
   @Input() title: string = "Confirm"
   @Input() message: string = "Are You Sure";
-  @Input() yesLabel: string = "Yes";
-  @Input() noLabel: string = 'No'
 
-  @Input() yesCssClass?: string
-  @Input() noCssClass: string
+  @Input() okButtonLabel: string = "Yes";
+  @Input() cancelButtonLabel: string = 'No'
+
+  @Input() okButtonClass: string = 'p-button-text'
+  @Input() cancelButtonClass: string = 'p-button-text'
+
+  @Input() okButtonIcon = 'pi pi-chek'
+  @Input() cancelButtonIcon = 'pi pi-times'
 
   constructor(private ref: DynamicDialogRef,
     private config: DynamicDialogConfig) { }
@@ -26,5 +29,4 @@ export class PromptComponent implements OnInit {
   ngOnInit(): void {
     this.config && Object.keys(this.config).forEach(key => this[key] = this.config[key])
   }
-
 }

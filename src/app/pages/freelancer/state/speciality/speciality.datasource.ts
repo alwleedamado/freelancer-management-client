@@ -2,9 +2,9 @@ import { NgrxDataSource } from "utils/ngrx/ngrx.datasource";
 import { Store } from "@ngrx/store";
 import { AppState } from "core/reducers";
 import { selectors } from './speciality.selectors';
-import { Speciality } from "freelancer/models/speciality";
+import { SpecialityType } from "pages/freelancer/models/speciality-type";
 
-export class SpecialityDataSource extends NgrxDataSource<Speciality> {
+export class SpecialityDataSource extends NgrxDataSource<SpecialityType> {
 
     constructor(store: Store<AppState>) {
         super(store, selectors);

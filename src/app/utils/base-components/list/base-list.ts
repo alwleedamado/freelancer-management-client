@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { select, Store } from "@ngrx/store";
-import { IPageState, QueryParamsModel } from "core/models";
+import { PageState, QueryParams } from "core/models";
 import { AppState } from "core/reducers";
 import { routerSelectors } from "core/reducers/router-state/router.selectors";
 import produce from "immer";
@@ -36,7 +36,7 @@ export abstract class BaseList<T> implements IBaseList {
 	// set to false if you need to fetch data with non-standard way
 	dispatchFindAction = true;
 
-	currentQueryParams: QueryParamsModel;
+	currentQueryParams: QueryParams;
 	componentActive = true;
 
 	constructor(
@@ -85,7 +85,7 @@ export abstract class BaseList<T> implements IBaseList {
 	}
 
 
-	pagenatorChange(page: IPageState) {
+	pagenatorChange(page: PageState) {
 		this.currentQueryParams = produce(this.currentQueryParams, query => {
 			query.pageSize = page.pageSize;
 			query.pageNumber = page.pageNumber;

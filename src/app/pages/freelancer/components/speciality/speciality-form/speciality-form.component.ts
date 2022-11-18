@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'core/reducers';
-import { Speciality } from 'pages/freelancer/models/speciality';
+import { SpecialityType } from 'pages/freelancer/models/speciality-type';
 import { SpecialityActoins, SpecialitySelectors } from 'pages/freelancer/state/speciality';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -14,7 +14,7 @@ import { BaseDialogForm } from 'utils/base-components/form/base-dialog-form';
   templateUrl: './speciality-form.component.html',
   styleUrls: ['./speciality-form.component.scss']
 })
-export class SpecialityFormComponent extends BaseDialogForm<Speciality> {
+export class SpecialityFormComponent extends BaseDialogForm<SpecialityType> {
   title: string;
 
   constructor(

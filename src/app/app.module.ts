@@ -19,34 +19,34 @@ import { IconService } from 'shared/services/icon.service';
 import { NodeService } from 'shared/services/node.service';
 import { PhotoService } from 'shared/services/photo.service';
 import { ProductService } from 'shared/services/product.service';
-import { NotfoundComponent } from './notfound/notfound.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { LayoutUtilsService } from 'shared/services/layout-utils.service';
 @NgModule({
-    declarations: [
-        AppComponent, NotfoundComponent
-    ],
-    imports: [
-        AppRoutingModule,
-        AppLayoutModule,
-        HttpClientModule,
-        CoreModule,
-        
-        StoreModule.forRoot(reducers, { metaReducers }),
-        StoreDevtoolsModule.instrument({
-          autoPause: true
-        }),
-        EffectsModule.forRoot([RouterEffect]),
+  declarations: [
+    AppComponent, NotfoundComponent
+  ],
+  imports: [
+    AppRoutingModule,
+    AppLayoutModule,
+    HttpClientModule,
+    CoreModule,
 
-        StoreRouterConnectingModule.forRoot({
-          stateKey: 'router',
-          serializer: MergedRouterStateSerializer
-        }),
-    ],
-    providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, LayoutUtilsService
-    ],
-    bootstrap: [AppComponent]
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument({
+      autoPause: true
+    }),
+    EffectsModule.forRoot([RouterEffect]),
+
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router',
+      serializer: MergedRouterStateSerializer
+    }),
+  ],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    CountryService, CustomerService, EventService, IconService, NodeService,
+    PhotoService, ProductService, LayoutUtilsService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

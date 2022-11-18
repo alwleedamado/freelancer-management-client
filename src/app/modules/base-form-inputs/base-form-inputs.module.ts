@@ -14,4 +14,4 @@ import { FormFieldComponent } from './components/form-field/form-field.component
     FormFieldComponent
   ]
 })
-export class BaseFormControlsModule { }
+export class BaseFormInputsModule { }

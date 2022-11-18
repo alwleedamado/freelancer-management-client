@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { QueryParamsModel, QueryResultsModel } from "core/models";
+import { QueryParams, QueryResultsModel } from "core/models";
 import { dropdownItem } from "shared/models/dropdown";
 import ObjectToQueryString from "utils/helpers/ObjectToQueryString";
 
@@ -14,7 +14,7 @@ export class DataService<T> {
 		return this.http.get<T>(`${this.url}/${id}`);
 	}
 
-	getFilter(queryParams: QueryParamsModel) {
+	getFilter(queryParams: QueryParams) {
 		return this.http.get<QueryResultsModel>(
 			`${this.url}/filter?${ObjectToQueryString(queryParams)}`
 		);

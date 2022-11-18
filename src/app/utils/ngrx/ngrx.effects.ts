@@ -2,10 +2,11 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { TypedAction } from '@ngrx/store/src/models';
 import { AppState } from 'core/reducers';
-import { registerError } from 'core/reducers/error-state/error-state.actions';
+import { addErrorToRoot } from 'core/reducers/error-state/error-state.actions';
 import uiActions from 'core/reducers/ui-state/ui-state.actions';
-import { Observable, of, pipe } from 'rxjs';
-import { catchError, exhaustMap, filter, map, mergeMap, switchMap, take } from 'rxjs/operators';
+import { of, pipe } from 'rxjs';
+import { catchError, exhaustMap, filter, map, mergeMap, switchMap, take, tap } from 'rxjs/operators';
+import { LayoutUtilsService } from 'shared/services/layout-utils.service';
 import { ToastEffectsConfig } from 'utils/helpers/toast-effects-config';
 import { IngrxActions, IngrxSelectors } from 'utils/models/ngrx';
 import { DataService } from 'utils/services/data.service';
@@ -16,16 +17,13 @@ export abstract class BaseEffect<T> {
         return entity["id"];
     }
 
-    refreshActivityLogs$: Observable<any>;
-    private logsReloadTriggersActions = []
-
-
     constructor(
         protected actions$: Actions,
         protected ngrxAction: IngrxActions<T>,
         protected dataService: DataService<T>,
         protected store: Store<AppState>,
-        protected selectors: IngrxSelectors<T>
+        protected selectors: IngrxSelectors<T>,
+        protected layoutUtilsService: LayoutUtilsService
     ) {
 
     }
@@ -63,42 +61,58 @@ export abstract class BaseEffect<T> {
 
     find$ = createEffect(() => this.actions$.pipe(
         ofType(this.ngrxAction.find),
-        mergeMap(action => this.dataService.get(action.id)
+        switchMap(action => this.dataService.get(action.id)
             .pipe(
-                map(result => this.ngrxAction.findComplete({ payload: result })),
-                catchError(err => of(this.ngrxAction.findFail({ error: err })))
+                map(result => this.ngrxAction.findSucceeded({ payload: result })),
+                catchError(err => {
+                    this.layoutUtilsService.showError("Entity Not Found")
+                    return of(this.ngrxAction.findFail({ error: err }))
+                })
             ))
     ));
 
     create$ = createEffect(() => this.actions$.pipe(
-        ofType(this.ngrxAction.addNew),
+        ofType(this.ngrxAction.createEntity),
         exhaustMap(action => this.dataService.create(action.payload)
             .pipe(
-                map(result => this.ngrxAction.addNewComplete({ payload: result })),
-                catchError(err => of(this.ngrxAction.addNewFail({ error: err })))
+                tap(_ => this.layoutUtilsService.showSuccess("Entity Created Successfully")),
+                map(result => this.ngrxAction.createEntitySucceeded({ payload: result })),
+                catchError(err => {
+                    this.layoutUtilsService.showError('Failed to Create Entity')
+                    return of(this.ngrxAction.createEntityFailed({ error: err }))
+                })
             ))
     ));
 
-    updateRequest$ = createEffect(() => this.actions$.pipe(
-        ofType(this.ngrxAction.updateRequest),
+    updateEntity$ = createEffect(() => this.actions$.pipe(
+        ofType(this.ngrxAction.updateEntity),
         exhaustMap(action => this.dataService.update(action.id, action.data)
             .pipe(
                 map(result => {
+                    this.layoutUtilsService.showSuccess("Entity Updated Successfully")
                     if (result)
-                        return this.ngrxAction.updateComplete({ data: result })
+                        return this.ngrxAction.updateEntitySucceeded({ data: result })
                     else if (action.data)
-                        return this.ngrxAction.updateComplete({ data: { ...action.data, id: action.id } })
+                        return this.ngrxAction.updateEntitySucceeded({ data: { ...action.data, id: action.id } })
                 }),
-                catchError(err => of(this.ngrxAction.updateFail({ error: err, id: action.id })))
+                catchError(err => {
+                    this.layoutUtilsService.showError("Couldn't Update Entity")
+                    return of(this.ngrxAction.updateEntityFailed({ error: err, id: action.id }))
+                }
+                )
             ))
     ));
 
     delete$ = createEffect(() => this.actions$.pipe(
         ofType(this.ngrxAction.deleteEntity),
-        mergeMap(action => this.dataService.delete(action.id)
+        exhaustMap(action => this.dataService.delete(action.id)
             .pipe(
-                map(result => this.ngrxAction.deleteComplete({ payload: action.id })),
-                catchError(err => of(this.ngrxAction.deleteFail({ error: err, id: action.id })))
+                tap(_ => this.layoutUtilsService.showSuccess("Entity Deleted Successfully")),
+                map(result => this.ngrxAction.deleteEntitySucceeded({ payload: action.id })),
+                catchError(err => {
+                    this.layoutUtilsService.showError("Couldn't Delete Entity")
+                    return of(this.ngrxAction.deleteEntityFailed({ error: err, id: action.id }))
+                })
             ))
     ));
 
@@ -108,24 +122,10 @@ export abstract class BaseEffect<T> {
             this.ngrxAction.loadFail,
             this.ngrxAction.getAllFail,
             this.ngrxAction.findFail,
-            this.ngrxAction.addNewFail,
-            this.ngrxAction.updateFail,
-            this.ngrxAction.deleteFail
+            this.ngrxAction.createEntityFailed,
+            this.ngrxAction.updateEntityFailed,
+            this.ngrxAction.deleteEntityFailed
         ),
-        map(actions => registerError({ error: actions.error }))
+        map(actions => addErrorToRoot({ lastError: actions.error })),
     ));
-
-
-    toastEffectsCreator(config: ToastEffectsConfig)  {
-        const { success, failure } = config
-        
-        return pipe(ofType(...[success.action, failure.action]),
-            map((action: any & TypedAction<string>) => {
-                if (action.type == success.action.type)
-                    return uiActions.showSuccessToastr({ title: success.title, message: success.message })
-                if (action.type == failure.action.type)
-                    return uiActions.showErrorToastr({ title: failure.title, message: failure.message })
-            }));
-        }
-
 }

@@ -1,17 +1,19 @@
-export interface QueryParamsModel {
+export interface QueryParams {
     sortOrder: 'asc' | 'desc';
     sortField: string;
     pageNumber: number;
     pageSize: number;
-    entityFilters: any;
+    filters: any;
+    entityFilters: any
 }
 
-export function defaultQuery(): QueryParamsModel {
+export function defaultQuery(): QueryParams {
     return {
         sortOrder: "desc",
         sortField: 'id',
         pageNumber: 1,
         pageSize: 10,
-        entityFilters: {},
+        filters: {},
+        entityFilters: {}
     }
 }

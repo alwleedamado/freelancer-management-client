@@ -1,14 +1,14 @@
 import { ComponentType } from "@angular/cdk/portal";
 import { Injectable } from "@angular/core";
 import { select, Store } from "@ngrx/store";
+import { Prompt } from "core/models/prompt";
 import { AppState } from "core/reducers";
 import { routerSelectors } from "core/reducers/router-state/router.selectors";
 import { Observable } from "rxjs";
-import { map, skip, takeWhile } from "rxjs/operators";
+import { map, takeWhile } from "rxjs/operators";
 import { LayoutUtilsService } from "shared/services/layout-utils.service";
 import { communicationResult } from "utils/models/communicationResult";
 import { IngrxActions, IngrxSelectors } from "utils/models/ngrx";
-import { PromptParts } from "utils/models/prompt";
 import { IBaseSingleDetail } from "./i-base-single-view";
 
 @Injectable()
@@ -26,17 +26,6 @@ export abstract class BaseSingleDetail<T> implements IBaseSingleDetail<T> {
     componentName: any;
     moduleName: any;
     abstract get title();
-
-    defaultDeletePrompt: PromptParts = {
-        title: "PROMPTS.DELETE_ENTITY",
-        message: "PROMPTS.SURE_TO_DELETE",
-        yesLabel: "BUTTONS.DELETE",
-        noLabel: "BUTTONS.CANCEL",
-
-        yesCssClass: "btn btn-outline-danger",
-        noCssClass: "btn btn-light",
-
-    }
 
     entity: T
     entity$: Observable<T>
@@ -56,7 +45,7 @@ export abstract class BaseSingleDetail<T> implements IBaseSingleDetail<T> {
         this.loading$ = this.store.select(this.selectors.selectFindResult).pipe(map(x => x == communicationResult.request));
         this.deleting$ = this.store.select(this.selectors.selectDeleteResult).pipe(map(x => x == communicationResult.request));
 
-       this.entity$ = this.store
+        this.entity$ = this.store
             .pipe(
                 takeWhile(() => this.componentActive),
                 select(this.selectors.selectDataEntityById(this.id)))
@@ -85,11 +74,11 @@ export abstract class BaseSingleDetail<T> implements IBaseSingleDetail<T> {
     }
 
     delete() {
-        this.layout.deletePrompt(this.defaultDeletePrompt).subscribe(r => {
+        this.layout.openDeletePrompt().subscribe(r => {
             if (r)
                 this.store.dispatch(this.actions.deleteEntity({ id: this.id }));
         })
     }
-    
+
     abstract storeSubscription();
 }
