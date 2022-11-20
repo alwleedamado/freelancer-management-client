@@ -7,6 +7,7 @@ import { actions } from './freelancer.actions';
 import { Actions } from '@ngrx/effects';
 import { FreelancerService } from 'freelancer/services/freelancer.service';
 import { selectors } from './freelancer.selectors';
+import { LayoutUtilsService } from 'shared/services/layout-utils.service';
 
 
 @Injectable()
@@ -19,8 +20,9 @@ export class FreelancerEffects extends BaseEffect<Freelancer> {
         actions$: Actions,
         private service: FreelancerService,
         store: Store<AppState>,
+        layoutUtils: LayoutUtilsService
 
     ) {
-        super(actions$, actions, service, store, selectors)
+        super(actions$, actions, service, store, selectors, layoutUtils)
     }
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BaseSingleDetail } from 'utils/base-components/view/base-single-detail-view';
+import { BaseSingleDetail } from 'utils/base-components/view/base-single-detail';
 import { Freelancer } from 'pages/freelancer/models/freelancer';
 import { Store } from '@ngrx/store';
 import { AppState } from 'core/reducers';
@@ -20,6 +20,6 @@ export class FreelancerSingleDetailComponent extends BaseSingleDetail<Freelancer
   }
 
   constructor(store: Store<AppState>, layoutUtilService: LayoutUtilsService) {
-    super(store, layoutUtilService,FreelancerFormComponent, FreelancerActoins, FreelancerSelectors)
-   }
+    super(store, layoutUtilService, FreelancerFormComponent, FreelancerActoins, FreelancerSelectors)
+  }
 }

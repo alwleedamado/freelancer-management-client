@@ -1,6 +1,6 @@
 import { EntityAdapter } from "@ngrx/entity";
 import { createSelector, DefaultProjectorFn, MemoizedSelector } from "@ngrx/store";
-import { IPageState, ISortState } from "core/models";
+import { PageState, SortState } from "core/models";
 import { communicationResult } from "utils/models/communicationResult";
 import { IngrxSelectors, IngrxState } from "utils/models/ngrx";
 
@@ -130,7 +130,7 @@ export function createSelectors<T>(adapter: EntityAdapter<T>, stateSelector: Mem
         selectData,
         selectLastQuery,
         (data, query) => {
-            let filter =  '';
+            let filter = '';
             return data
                 .filter(x => x["name"] === undefined || (x["name"] as string).toLowerCase().indexOf(filter) != -1)
                 .sort((a, b) => {
@@ -159,7 +159,7 @@ export function createSelectors<T>(adapter: EntityAdapter<T>, stateSelector: Mem
         selectLastQuery,
         (data, query) => {
             return data
-                // .slice(query.pageNumber * query.pageSize, (query.pageNumber + 1) * query.pageSize)
+            // .slice(query.pageNumber * query.pageSize, (query.pageNumber + 1) * query.pageSize)
 
         }
     )
@@ -173,11 +173,11 @@ export function createSelectors<T>(adapter: EntityAdapter<T>, stateSelector: Mem
     let selectPageState = createSelector(
         selectTotalCount,
         selectLastQuery,
-        (total, query): IPageState => ({ pageNumber: query.pageNumber, pageSize: query.pageSize, total })
+        (total, query): PageState => ({ pageNumber: query.pageNumber, pageSize: query.pageSize, total })
     );
     let selectSortState = createSelector(
         selectLastQuery,
-        (state): ISortState => ({ sortField: state.sortField, sortOrder: state.sortOrder })
+        (state): SortState => ({ sortField: state.sortField, sortOrder: state.sortOrder })
     );
     let selectError = createSelector(
         stateSelector,

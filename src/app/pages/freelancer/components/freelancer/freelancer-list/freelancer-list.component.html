@@ -1,10 +1,9 @@
 <app-card [title]="title">
 	<app-list-toolbar (create)="addEntity()"></app-list-toolbar>
 	<div class="table-responsive">
-		<p-toast></p-toast>
-		
-		<p-table [rows]="(dataSource.items$|async).length" [lazy]="true" (onLazyLoad)="loadList($event)" [value]="dataSource.items$|async"
-		[tableStyle]="{'min-width': '60rem', 'width': '100%'}"> 
+
+		<p-table [rows]="(dataSource.items$|async).length" [lazy]="true" (onLazyLoad)="loadList($event)"
+			[value]="dataSource.items$|async" [tableStyle]="{'min-width': '60rem', 'width': '100%'}">
 			<ng-template pTemplate="header">
 				<tr>
 					<th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon>
@@ -19,16 +18,18 @@
 					<td>{{item.id}}</td>
 					<td>{{item.name}}</td>
 					<td>{{item.email}}</td>
-					<td>{{item.phone}}</td>
-					<td><app-table-actions (view)="viewEntity(item.id)"></app-table-actions></td>
+					<td>{{item.telephones[0]?.telephoneNumber}}</td>
+					<td>
+						<app-table-actions (view)="viewEntity(item.id)"></app-table-actions>
+					</td>
 				</tr>
 			</ng-template>
 			<ng-template pTemplate="summary">
 			</ng-template>
 
 		</p-table>
-		<app-table-paginator [pageState]="dataSource.pageState$|async" [loading]="dataSource.loading$|async" 
-		(pagenate)="pagenatorChange($event)">
+		<app-table-paginator [pageState]="dataSource.pageState$|async" [loading]="dataSource.loading$|async"
+			(pagenate)="pagenatorChange($event)">
 		</app-table-paginator>
 	</div>
 </app-card>

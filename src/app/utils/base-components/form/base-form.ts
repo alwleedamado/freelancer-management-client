@@ -17,19 +17,10 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
 
     abstract title: string;
 
-    abstract closeForm();
+    abstract closeForm(): void;
     abstract ngOnInit();
 
-    // abstract returnUrl: string[];
-    // abstract editUrl: string[];
-
     entity: T;
-
-    findEntityInStore = true;
-
-    defaultCreateCompleteSubscription = true;
-    defaultUpdateCompleteSubscription = true;
-    defaultDeleteCompleteSubscription = true;
 
     isFormEnabled = true;
 
@@ -39,7 +30,6 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
     id: string | number;
     form: FormGroup;
 
-    //For Data Reset
     formBase: any;
 
 
@@ -75,9 +65,9 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
         if (this.form.valid) {
             this.closeAfterAction = closeAfter;
             if (this.id)
-                this.store.dispatch(this.actions.updateRequest({ id: this.id, data: this.formValue() }));
+                this.store.dispatch(this.actions.updateEntity({ id: this.id, data: this.formValue() }));
             else
-                this.store.dispatch(this.actions.addNew({ payload: this.formValue() }));
+                this.store.dispatch(this.actions.createEntity({ payload: this.formValue() }));
         }
     }
 
@@ -99,7 +89,6 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
         }
 
         this.afterFormInit(entity);
-
     }
 
     cleanForm() {
@@ -109,7 +98,7 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
 
 
     delete() {
-        this.layout.deletePrompt()
+        this.layout.openDeletePrompt()
             .pipe(take(1))
             .subscribe(r => {
                 if (r)
@@ -122,8 +111,8 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
     }
 
     afterFormInit(entity?: Partial<T>) { }
-    
-    abstract formValue();
-    abstract createForm();
-    abstract storeSubscriptions();
+
+    abstract formValue(): T;
+    abstract createForm(): void;
+    abstract storeSubscriptions(): void;
 }

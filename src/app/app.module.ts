@@ -19,34 +19,43 @@ import { IconService } from 'shared/services/icon.service';
 import { NodeService } from 'shared/services/node.service';
 import { PhotoService } from 'shared/services/photo.service';
 import { ProductService } from 'shared/services/product.service';
-import { NotfoundComponent } from './notfound/notfound.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { LayoutUtilsService } from 'shared/services/layout-utils.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HotToastModule, ToastPersistConfig } from '@ngneat/hot-toast';
 @NgModule({
-    declarations: [
-        AppComponent, NotfoundComponent
-    ],
-    imports: [
-        AppRoutingModule,
-        AppLayoutModule,
-        HttpClientModule,
-        CoreModule,
-        
-        StoreModule.forRoot(reducers, { metaReducers }),
-        StoreDevtoolsModule.instrument({
-          autoPause: true
-        }),
-        EffectsModule.forRoot([RouterEffect]),
+  declarations: [
+    AppComponent, NotfoundComponent
+  ],
+  imports: [
+    AppRoutingModule,
+    AppLayoutModule,
+    HttpClientModule,
+    CoreModule,
+    BrowserAnimationsModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument({
+      autoPause: true
+    }),
+    EffectsModule.forRoot([RouterEffect]),
 
-        StoreRouterConnectingModule.forRoot({
-          stateKey: 'router',
-          serializer: MergedRouterStateSerializer
-        }),
-    ],
-    providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, LayoutUtilsService
-    ],
-    bootstrap: [AppComponent]
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router',
+      serializer: MergedRouterStateSerializer
+    }),
+    HotToastModule.forRoot({
+      reverseOrder: true,
+      dismissible: true,
+      autoClose: true,
+      position: 'top-right',
+      duration: 5000
+    }),
+  ],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    CountryService, CustomerService, EventService, IconService, NodeService,
+    PhotoService, ProductService, LayoutUtilsService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

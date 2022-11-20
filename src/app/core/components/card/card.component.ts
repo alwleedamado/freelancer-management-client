@@ -23,7 +23,6 @@ export class CardComponent implements OnInit {
   }
   goBack() {
     const prevUrl = this.currentUrl.split('/').slice(0, -2)
-    // .filter(s => s.length != 0)
     this.store.dispatch(routerActions.navigate({ url: prevUrl }))
   }
 }

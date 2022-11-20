@@ -6,7 +6,7 @@ import { endpoints } from "./endpoints";
 
 export const environment = {
   production: false,
-  baseUrl: 'https://localhost:44338/api/',
+  baseUrl: 'https://localhost:44338/',
   ...endpoints
 };
 

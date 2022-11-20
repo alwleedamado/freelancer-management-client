@@ -1,14 +1,13 @@
 import { Injectable } from "@angular/core";
+import { HotToastService } from "@ngneat/hot-toast";
 import { Store } from "@ngrx/store";
 import { PromptComponent } from "core/components/prompt/prompt.component";
+import { Prompt } from "core/models";
+import { CustomError } from "core/models/custom-error";
 import { ToastService } from "core/services/toast.service";
-import { environment } from "environments/environment";
 import { DialogService, DynamicDialogConfig } from "primeng/dynamicdialog";
-import { from, Observable, of, Subscription } from "rxjs";
-import { catchError, take } from "rxjs/operators";
-import { CustomError } from "utils/models/custom-error";
+import { Observable } from "rxjs";
 import { DialogConfig } from "utils/models/dialog-config.model";
-import { PromptParts } from "utils/models/prompt";
 
 @Injectable({ providedIn: "root", })
 
@@ -19,11 +18,11 @@ export class LayoutUtilsService {
 
     constructor(
         private dialog: DialogService,
-        private toastService: ToastService,
+        private toastService: HotToastService,
         private store: Store<any>) {
     }
 
-    prompt(prompt: PromptParts): Observable<boolean> {
+    prompt(prompt: Prompt): Observable<boolean> {
         let promptConfig = { ...this.modalOptions }
         promptConfig.data = prompt
         let ref = this.dialog.open(PromptComponent, promptConfig);
@@ -32,46 +31,37 @@ export class LayoutUtilsService {
 
     open(componentRef: any, config?: DialogConfig): Observable<any> {
         let ref = this.dialog.open(componentRef, { ...this.modalOptions, ...config?.options, data: config?.data });
-        return from(ref.onClose)
-            .pipe(
-                take(1),
-                catchError(err => {
-                    console.error(err)
-                    return of(null);
-                }))
-
+        return ref.onClose;
     }
 
-    showSuccess(_message: any, _title?: any) {
-        return this.toastService.showSuccess(_title, _message)
+    showSuccess(title: any, message?: any) {
+        return this.toastService.success(message)
     }
 
-    showInfo(_message: any, _title?: any) {
-        return this.toastService.showInfo(_title, _message)
+    showInfo(title: any, message?: any) {
+        return this.toastService.info(message)
+    }
+
+    showWarning(title: any, message?: any) {
+        return this.toastService.warning(title, message)
     }
 
 
-    showError(error: CustomError) {
-        if (!environment.production && error.details)
-            console.log("ERROR: ", error);
-        let msg = error.message;
-
-        if (error.formErrors && error.formErrors.trim) // formerror is string
-            msg = error.formErrors;
-
-        return this.toastService.showError(error.title, error.message)
-
+    showApiError(error: CustomError) {
+        return this.toastService.error(error.message)
     }
 
-    deletePrompt(prompt?: PromptParts): Observable<boolean> {
-        let p: PromptParts = {
+    showError(title: string, message?: string) {
+        return this.toastService.error(message)
+    }
+    openDeletePrompt(prompt?: Prompt): Observable<boolean> {
+        let p: Prompt = {
             title: prompt?.title ?? "Delete Confirmation",
             message: prompt?.message ?? "Are you sure to delete this entity",
-            yesLabel: prompt?.yesLabel ?? "Delete",
-            noLabel: prompt?.noLabel ?? "Cancel",
-
-            yesCssClass: prompt?.yesCssClass ?? "btn btn-outline-danger",
-            noCssClass: prompt?.noCssClass ?? "btn btn-light",
+            okButtonLabel: prompt?.okButtonLabel ?? "Delete",
+            okButtonClass: prompt?.okButtonClass ?? "p-button p-button-outline p-button-danger",
+            cancelButtonLabel: prompt?.cancelButtonLabel ?? "Cancel",
+            cancelButtonClass: prompt?.cancelButtonClass ?? "p-button p-button-light",
         }
         return this.prompt(p);
     }

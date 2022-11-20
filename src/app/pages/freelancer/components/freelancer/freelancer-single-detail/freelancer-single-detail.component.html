@@ -4,5 +4,32 @@
         <app-field-view class="col-12 md:col-6" label="Name" [value]="i.name"></app-field-view>
         <app-field-view class="col-12 md:col-6" label="Email" [value]="i.email"></app-field-view>
         <app-field-view class="col-12 md:col-6" label="Gender" [value]="i.gender"></app-field-view>
+        <app-field-view label="Specialities" class="col-12">
+            <span *ngFor="let sp of i.specialities" class="p-chip">{{sp.name}}</span>
+        </app-field-view>
+        <div class="col-12">
+            <p-table [rows]="i.telephones?.length" [value]="i.telephones"
+                [tableStyle]="{'min-width': '60rem', 'width': '100%'}">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="name">Phone Type <p-sortIcon field="name"></p-sortIcon>
+                        </th>
+                        <th>Telephone Number</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.phoneType}}</td>
+                        <td>{{item.telephoneNumber}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                </ng-template>
+
+            </p-table>
+        </div>
     </div>
 </app-card>

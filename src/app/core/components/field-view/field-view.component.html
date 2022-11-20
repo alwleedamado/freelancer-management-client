@@ -3,7 +3,10 @@
         {{label}}
     </div>
 
-    <div [ngClass]="valueClass" class="font-bold text-gray-800">
+    <div [ngClass]="valueClass" *ngIf="value" class="font-bold text-gray-800">
         {{value}}
+    </div>
+    <div>
+        <ng-content></ng-content>
     </div>
 </div>

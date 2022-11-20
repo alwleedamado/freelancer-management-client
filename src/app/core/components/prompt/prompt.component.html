@@ -1,1 +1,12 @@
-<p>prompt works!</p>
+<div class="flex flex-column">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span>{{message}</span>
+    </div>
+    <div>
+        <button pButton pRipple [icon]="cancelButtonIcon" [ngClass]="cancelButtonClass" [label]="cancelButtonLabel"
+            (click)="close(false)"></button>
+        <button pButton pRipple [icon]="okButtonIcon" [ngClass]="okButtonClass" [label]="okButtonClass"
+            (click)="close(true)"></button>
+    </div>
+</div>

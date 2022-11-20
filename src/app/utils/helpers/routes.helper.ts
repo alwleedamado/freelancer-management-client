@@ -1,9 +1,9 @@
 import { Type } from "@angular/core";
 import { Routes } from "@angular/router";
 import { BaseRoutingForm } from "utils/base-components/form/base-routing-form";
-import { IBaseList } from "utils/base-components/list/i-base-list";
-import { IBaseLookupList } from "utils/base-components/list/i-base-lookup-list";
-import { BaseSingleDetail } from "utils/base-components/view/base-single-detail-view";
+import { IBaseList } from "utils/base-components/list/base-lsit.interface";
+import { IBaseLookupList } from "utils/base-components/list/base-lookup-list.interface";
+import { BaseSingleDetail } from "utils/base-components/view/base-single-detail";
 import { BaseView } from "utils/base-components/view/base-view";
 import { FormDeactivateGuardService } from "utils/gaurds/formDeactivate.guard";
 import { RouteData } from "utils/models/route-data";

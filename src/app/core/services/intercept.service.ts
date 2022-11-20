@@ -1,21 +1,20 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'environments/environment';
+import { env } from 'process';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 
 @Injectable()
-export class InterceptService implements HttpInterceptor {
-    constructor() {}
+export class LoggingInterceptor implements HttpInterceptor {
+    constructor() { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const started = Date.now();
-        // req = req.clone({
-        //     setHeaders
-        // })
         return next.handle(req).pipe(
             tap(event => {
-                if (event instanceof HttpResponse) {
+                if (event instanceof HttpResponse && !environment.production) {
                     const elapsed = Date.now() - started;
                     console.log(`Request for ${req.urlWithParams} took ${elapsed} ms.`);
                 }

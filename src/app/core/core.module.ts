@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './components/card/card.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { InterceptService } from './services/intercept.service';
+import { LoggingInterceptor } from './services/intercept.service';
 import { PromptComponent } from './components/prompt/prompt.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { FormFooterComponent } from './components/form-footer/form-footer.component';
@@ -17,10 +17,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
-import { BaseFormControlsModule } from 'modules/base-form-controls/base-form-controls.module';
 import { FieldViewComponent } from './components/field-view/field-view.component';
-import {MessageModule} from 'primeng/message';
+import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
+import { ChipModule } from 'primeng/chip'
 @NgModule({
   declarations: [
     CardComponent,
@@ -56,8 +56,9 @@ import { ToastModule } from 'primeng/toast';
     DynamicDialogModule,
     PaginatorModule,
     InputTextModule,
-ToastModule,
+    ToastModule,
     MessageModule,
+    ChipModule,
 
     // Components
     CardComponent,
@@ -72,7 +73,7 @@ ToastModule,
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: InterceptService,
+      useClass: LoggingInterceptor,
       multi: true
     },
     DialogService,

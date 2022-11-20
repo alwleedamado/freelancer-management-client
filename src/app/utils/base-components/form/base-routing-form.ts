@@ -44,10 +44,9 @@ export abstract class BaseRoutingForm<T> extends BaseForm<T> {
                 if (this.id) {
                     this.triggerEdit(false);
 
-                    if (this.form.get('id'))
-                        this.form.get('id').setValue(this.id);
+                    this.form.get('id')?.setValue(this.id);
 
-                    this.store.dispatch(this.findEntityInStore ? this.actions.initialFind({ id: this.id }) : this.actions.find({ id: this.id }))
+                    this.store.dispatch(this.actions.find({ id: this.id }))
 
                     this.store.pipe(
                         takeWhile(() => this.componentActive),
@@ -62,61 +61,6 @@ export abstract class BaseRoutingForm<T> extends BaseForm<T> {
                 }
                 else this.initForm();
             });
-
-
-        combineLatest([
-            this.store.select(this.selectors.selectLastCreatedId),
-            this.store.select(this.selectors.selectAddResult)])
-            .pipe(
-                takeWhile(() => this.componentActive && this.defaultCreateCompleteSubscription),
-                skip(1),
-                filter(([id, result]) => result == communicationResult.success)
-            )
-            .subscribe(([id, result]) => {
-
-                this.layout.showSuccess("TOASTS.CREATED");
-
-                this.cleanForm();
-                if (this.closeAfterAction)
-                    this.closeForm();
-                else {
-                    //Navigate to Edit
-                    this.id = id;
-                    this.store.dispatch(routerActions.navigate({
-                        url: [this.editUrl[0], this.id]
-                    }));
-
-                }
-            });
-
-        this.store
-            .pipe(
-                select(this.selectors.selectUpdateResult),
-                takeWhile(() => this.componentActive && this.defaultUpdateCompleteSubscription),
-                skip(1),
-                filter(result => result == communicationResult.success))
-            .subscribe(() => {
-                this.layout.showSuccess("TOASTS.UPDATED");
-                this.cleanForm();
-                if (this.closeAfterAction)
-                    this.closeForm();
-                else {
-                    this.initForm(this.form.value);
-                    this.triggerEdit(false);
-                }
-            });
-
-        this.store
-            .pipe(
-                select(this.selectors.selectDeleteResult),
-                takeWhile(() => this.componentActive && this.defaultDeleteCompleteSubscription),
-                skip(1),
-                filter(result => result == communicationResult.success))
-            .subscribe(() => {
-                this.cleanForm();
-                this.layout.showInfo("TOASTS.DELETED");
-                this.closeForm();
-            })
 
         this.storeSubscriptions();
     }

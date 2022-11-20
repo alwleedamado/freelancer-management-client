@@ -1,14 +1,14 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { CustomError } from "utils/models/custom-error";
-import { registerError } from "./error-state.actions";
+import { CustomError } from "core/models/custom-error";
+import { addErrorToRoot } from "./error-state.actions";
 
 export interface ErrorState {
-    error: CustomError
+    lastError: CustomError
 }
 
-const stateReducer = createReducer({ error: null },
-    on(registerError, (state, { error }) => ({
-        ...state, error: error
+const stateReducer = createReducer({ lastError: null },
+    on(addErrorToRoot, (state, { lastError }) => ({
+        ...state, lastError: lastError
     })),
 
 )
