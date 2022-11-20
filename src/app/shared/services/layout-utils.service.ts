@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { HotToastService } from "@ngneat/hot-toast";
 import { Store } from "@ngrx/store";
 import { PromptComponent } from "core/components/prompt/prompt.component";
 import { Prompt } from "core/models";
@@ -17,7 +18,7 @@ export class LayoutUtilsService {
 
     constructor(
         private dialog: DialogService,
-        private toastService: ToastService,
+        private toastService: HotToastService,
         private store: Store<any>) {
     }
 
@@ -34,24 +35,24 @@ export class LayoutUtilsService {
     }
 
     showSuccess(title: any, message?: any) {
-        return this.toastService.showSuccess(title, message)
+        return this.toastService.success(message)
     }
 
     showInfo(title: any, message?: any) {
-        return this.toastService.showInfo(title, message)
+        return this.toastService.info(message)
     }
 
     showWarning(title: any, message?: any) {
-        return this.toastService.showWarn(title, message)
+        return this.toastService.warning(title, message)
     }
 
 
     showApiError(error: CustomError) {
-        return this.toastService.showError(error.title, error.message)
+        return this.toastService.error(error.message)
     }
 
     showError(title: string, message?: string) {
-        return this.toastService.showError(title, message)
+        return this.toastService.error(message)
     }
     openDeletePrompt(prompt?: Prompt): Observable<boolean> {
         let p: Prompt = {
