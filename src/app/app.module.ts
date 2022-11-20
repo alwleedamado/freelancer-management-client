@@ -21,6 +21,8 @@ import { PhotoService } from 'shared/services/photo.service';
 import { ProductService } from 'shared/services/product.service';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { LayoutUtilsService } from 'shared/services/layout-utils.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HotToastModule, ToastPersistConfig } from '@ngneat/hot-toast';
 @NgModule({
   declarations: [
     AppComponent, NotfoundComponent
@@ -30,7 +32,7 @@ import { LayoutUtilsService } from 'shared/services/layout-utils.service';
     AppLayoutModule,
     HttpClientModule,
     CoreModule,
-
+    BrowserAnimationsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
       autoPause: true
@@ -40,6 +42,13 @@ import { LayoutUtilsService } from 'shared/services/layout-utils.service';
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
       serializer: MergedRouterStateSerializer
+    }),
+    HotToastModule.forRoot({
+      reverseOrder: true,
+      dismissible: true,
+      autoClose: true,
+      position: 'top-right',
+      duration: 5000
     }),
   ],
   providers: [

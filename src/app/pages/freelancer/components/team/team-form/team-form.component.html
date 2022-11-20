@@ -1,0 +1,8 @@
+<form [formGroup]="form">
+    <div class="p-fluid p-formgrid grid">
+        <app-form-field label="Name" class="field col-12 md:col-6">
+            <input pInputText id="name" type="text" formControlName='name' />
+        </app-form-field>
+    </div>
+</form>
+<app-form-footer (cancel)="closeForm()" (save)="save(true)"></app-form-footer>

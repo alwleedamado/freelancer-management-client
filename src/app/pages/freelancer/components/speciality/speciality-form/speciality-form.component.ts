@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'core/reducers';
 import { SpecialityType } from 'pages/freelancer/models/speciality-type';
-import { SpecialityActoins, SpecialitySelectors } from 'pages/freelancer/state/speciality';
+import { SpecialityTypeActoins, SpecialityTypeSelectors } from 'pages/freelancer/state/speciality-type';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { LayoutUtilsService } from 'shared/services/layout-utils.service';
@@ -24,7 +24,7 @@ export class SpecialityFormComponent extends BaseDialogForm<SpecialityType> {
     msg: MessageService,
     config: DynamicDialogConfig,
   ) {
-    super(store, layoutService, ref, config, msg, SpecialityActoins, SpecialitySelectors)
+    super(store, layoutService, ref, config, msg, SpecialityTypeActoins, SpecialityTypeSelectors)
   }
 
 

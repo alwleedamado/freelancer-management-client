@@ -2,7 +2,7 @@ import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 
-import {statics as FreelancersStatics } from 'freelancer/freelancer.statics'
+import { statics as FreelancersStatics } from 'freelancer/freelancer.statics'
 
 @Component({
     selector: 'app-menu',
@@ -24,6 +24,17 @@ export class AppMenuComponent implements OnInit {
                         label: FreelancersStatics.moduleName,
                         icon: 'pi pi-fw pi-user',
                         routerLink: [FreelancersStatics.urls.root]
+                    },
+
+                    {
+                        label: FreelancersStatics.labels.SpecialityType,
+                        icon: 'pi pi-fw pi-user',
+                        routerLink: [FreelancersStatics.urls.root, FreelancersStatics.urls.SpecialityType]
+                    },
+                    {
+                        label: FreelancersStatics.labels.Team,
+                        icon: 'pi pi-fw pi-user',
+                        routerLink: [FreelancersStatics.urls.root, FreelancersStatics.urls.Team]
                     },
                 ]
             }

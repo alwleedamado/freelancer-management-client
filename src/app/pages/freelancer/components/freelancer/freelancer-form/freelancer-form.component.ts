@@ -29,6 +29,7 @@ export class FreelancerFormComponent extends BaseDialogForm<Freelancer> {
   }
   createForm() {
     this.form = new FormGroup({
+      id: new FormControl(),
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       gender: new FormControl('', Validators.required),
