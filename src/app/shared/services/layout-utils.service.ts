@@ -1,10 +1,9 @@
+import { ToastService } from 'core/services/toast.service';
 import { Injectable } from "@angular/core";
-import { HotToastService } from "@ngneat/hot-toast";
 import { Store } from "@ngrx/store";
 import { PromptComponent } from "core/components/prompt/prompt.component";
 import { Prompt } from "core/models";
 import { CustomError } from "core/models/custom-error";
-import { ToastService } from "core/services/toast.service";
 import { DialogService, DynamicDialogConfig } from "primeng/dynamicdialog";
 import { Observable } from "rxjs";
 import { DialogConfig } from "utils/models/dialog-config.model";
@@ -18,7 +17,7 @@ export class LayoutUtilsService {
 
     constructor(
         private dialog: DialogService,
-        private toastService: HotToastService,
+        private toastService: ToastService,
         private store: Store<any>) {
     }
 
@@ -35,24 +34,24 @@ export class LayoutUtilsService {
     }
 
     showSuccess(title: any, message?: any) {
-        return this.toastService.success(message)
+        return this.toastService.showSuccess(title, message)
     }
 
     showInfo(title: any, message?: any) {
-        return this.toastService.info(message)
+        return this.toastService.showInfo(title, message)
     }
 
     showWarning(title: any, message?: any) {
-        return this.toastService.warning(title, message)
+        return this.toastService.showWarn(title, message)
     }
 
 
     showApiError(error: CustomError) {
-        return this.toastService.error(error.message)
+        return this.toastService.showError(error.message)
     }
 
     showError(title: string, message?: string) {
-        return this.toastService.error(message)
+        return this.toastService.showError(title, message)
     }
     openDeletePrompt(prompt?: Prompt): Observable<boolean> {
         let p: Prompt = {
