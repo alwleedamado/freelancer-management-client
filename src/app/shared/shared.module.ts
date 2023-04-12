@@ -1,3 +1,4 @@
+import { MessageModule } from 'primeng/message';
 import { NgModule } from '@angular/core';
 import { CoreModule } from 'core/core.module';
 import { BaseFormInputsModule } from 'modules/base-form-inputs/base-form-inputs.module';
@@ -6,7 +7,7 @@ import { TableListModule } from 'modules/table-list/table-list.module';
 
 import { DynamicDialogModule } from 'primeng/dynamicdialog'
 import { ToastModule } from 'primeng/toast';
-
+import {ProgressSpinnerModule} from 'primeng/progressspinner'
 
 
 @NgModule({
@@ -14,14 +15,17 @@ import { ToastModule } from 'primeng/toast';
   imports: [
     CoreModule,
     DynamicDialogModule,
-    ToastModule
+    ToastModule,
+    ProgressSpinnerModule,
   ],
   exports: [
     CoreModule,
     ToastModule,
     TableListModule,
     BaseFormInputsModule,
-    EntityModule
+    EntityModule,
+    ProgressSpinnerModule,
+    MessageModule
 
   ]
 })

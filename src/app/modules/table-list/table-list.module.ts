@@ -5,6 +5,7 @@ import { CoreModule } from 'core/core.module';
 import { ListToolbarComponent } from './components/list-toolbar/list-toolbar.component';
 import { TableActionsComponent } from './components/table-actions/table-actions.component';
 import { TablePaginatorComponent } from './components/table-paginator/table-paginator.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @NgModule({
   declarations: [
     TableCssDirective,
@@ -14,6 +15,8 @@ import { TablePaginatorComponent } from './components/table-paginator/table-pagi
   ],
   imports: [
     CoreModule,
+    ProgressSpinnerModule
+
   ],
   exports: [
     TableCssDirective,
