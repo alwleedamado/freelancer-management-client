@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
@@ -29,10 +30,10 @@ import { HotToastModule, ToastPersistConfig } from '@ngneat/hot-toast';
   ],
   imports: [
     AppRoutingModule,
+    BrowserAnimationsModule,
     AppLayoutModule,
     HttpClientModule,
     CoreModule,
-    BrowserAnimationsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({
       autoPause: true
@@ -53,6 +54,7 @@ import { HotToastModule, ToastPersistConfig } from '@ngneat/hot-toast';
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+    MessageService,
     CountryService, CustomerService, EventService, IconService, NodeService,
     PhotoService, ProductService, LayoutUtilsService
   ],

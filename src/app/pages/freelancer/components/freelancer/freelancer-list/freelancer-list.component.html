@@ -3,6 +3,7 @@
 	<div class="table-responsive">
 
 		<p-table [rows]="(dataSource.items$|async).length" [lazy]="true" (onLazyLoad)="loadList($event)"
+		[paginator]="false"
 			[value]="dataSource.items$|async" [tableStyle]="{'min-width': '60rem', 'width': '100%'}">
 			<ng-template pTemplate="header">
 				<tr>
@@ -33,3 +34,4 @@
 		</app-table-paginator>
 	</div>
 </app-card>
+<p-toast></p-toast>

@@ -77,7 +77,6 @@ import { ChipModule } from 'primeng/chip'
       multi: true
     },
     DialogService,
-    MessageService
   ]
 })
 export class CoreModule { }

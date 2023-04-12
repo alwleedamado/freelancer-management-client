@@ -1,3 +1,4 @@
+import { ToastService } from 'core/services/toast.service';
 import { Component } from '@angular/core';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Store } from '@ngrx/store';
@@ -25,9 +26,9 @@ export class FreelancerListComponent extends DefaultListView<Freelancer> {
   columns: string[] = ['id', 'name', 'email', 'phone'];
   dataSource: NgrxDataSource<Freelancer>
 
-  constructor(layoutUtils: LayoutUtilsService, private message: HotToastService,
+  constructor(layoutUtils: LayoutUtilsService, private message: HotToastService, private toastService: ToastService,
     store: Store<AppState>) {
     super(layoutUtils, FreelancerFormComponent, store, FreelancerActoins, FreelancerSelectors);
     this.dataSource = new FreelancerDataSource(this.store)
   }
-}
+ }
