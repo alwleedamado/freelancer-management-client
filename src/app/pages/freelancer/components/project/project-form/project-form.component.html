@@ -1,0 +1,15 @@
+<form [formGroup]="form">
+    <div class="p-fluid p-formgrid grid">
+        <app-form-field label="Project Name" class="field col-12 md:col-6">
+            <input pInputText id="projectName" type="text" formControlName='projectName' />
+        </app-form-field>
+        <app-form-field label="Price" class="col-12 md:col-6">
+            <input pInputText id="price" type="number" formControlName='price' />
+        </app-form-field>
+        <app-form-field label="Description" class="col-12 md:col-6">
+            <textarea pInputText id="Description" type="number" formControlName='Description'></textarea>
+        </app-form-field>
+        
+    </div>
+</form>
+<app-form-footer (cancel)="closeForm()" (save)="save(true)"></app-form-footer>

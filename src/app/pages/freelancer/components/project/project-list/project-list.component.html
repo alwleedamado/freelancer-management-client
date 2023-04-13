@@ -1,0 +1,37 @@
+<app-card [title]="title">
+	<app-list-toolbar (create)="addEntity()"></app-list-toolbar>
+	<div class="table-responsive">
+
+		<p-table [rows]="(dataSource.items$|async).length" [lazy]="true" (onLazyLoad)="loadList($event)"
+		[paginator]="false"
+			[value]="dataSource.items$|async" [tableStyle]="{'min-width': '60rem', 'width': '100%'}">
+			<ng-template pTemplate="header">
+				<tr>
+					<th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon>
+					</th>
+					<th pSortableColumn="projectName">Project Name <p-sortIcon field="projectName"></p-sortIcon>
+					</th>
+					<th>Due Date</th>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-item>
+				<tr>
+					<td>{{item.id}}</td>
+					<td>{{item.projectName}}</td>
+					<td>{{item.description}}</td>
+					<td>{{tem.dueDate}}</td>
+					<td>
+						<app-table-actions (view)="viewEntity(item.id)"></app-table-actions>
+					</td>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="summary">
+			</ng-template>
+
+		</p-table>
+		<app-table-paginator [pageState]="dataSource.pageState$|async" [loading]="dataSource.loading$|async"
+			(pagenate)="pagenatorChange($event)">
+		</app-table-paginator>
+	</div>
+</app-card>
+<p-toast></p-toast>

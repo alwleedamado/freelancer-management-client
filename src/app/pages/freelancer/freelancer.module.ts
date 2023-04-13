@@ -19,6 +19,8 @@ import { SpecialityFormComponent } from './components/speciality/speciality-form
 import { SpecialityListComponent } from './components/speciality/speciality-list/speciality-list.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
+import { ProjectListComponent } from './components/project/project-list/project-list.component';
+import { ProjectFormComponent } from './components/project/project-form/project-form.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { MessageModule } from 'primeng/message';
     SpecialityListComponent,
     SpecialityFormComponent,
     TeamListComponent,
-    TeamFormComponent
+    TeamFormComponent,
+    ProjectListComponent,
+    ProjectFormComponent
   ],
   imports: [
     SharedModule,
@@ -43,7 +47,9 @@ import { MessageModule } from 'primeng/message';
       { path: '', component: FreelancerListComponent },
       { path: 'view/:id', component: FreelancerViewComponent },
       { path: FreelancersStatics.urls.Team, component: TeamListComponent },
-      { path: FreelancersStatics.urls.SpecialityType, component: SpecialityListComponent }
+      { path: FreelancersStatics.urls.SpecialityType, component: SpecialityListComponent },
+      { path: FreelancersStatics.urls.Project, component: ProjectListComponent }
+
     ]),
     FormFieldsModule,
     ToastModule,

@@ -4,6 +4,7 @@ export const endpoints = {
         Freelancer: 'Persons',
         SpecialityType: 'Specialities',
         TeamType: 'TeamTypes',
-        Team: 'Teams'
+        Team: 'Teams',
+        Project: 'Projects'
     }
 }

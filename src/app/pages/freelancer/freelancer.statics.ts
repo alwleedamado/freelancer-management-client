@@ -4,19 +4,21 @@ export const statics = {
         Freelancer: 'Freelancer',
         SpecialityType: "SpecialityType",
         Team: 'Team',
-        TeamType: 'TeamType'
+        TeamType: 'TeamType',
+        Project: 'Project'
     },
     labels: {
         Freelancer: 'Freelancer',
         SpecialityType: "Speciality Type",
         Team: 'Team',
-        TeamType: 'Team Type'
+        TeamType: 'Team Type',
+        Project: 'Project'
     },
     urls: {
         root: 'freelancers',
         SpecialityType: 'specialities',
         Team: 'Teams',
-        TeamType: 'TeamTypes'
-
+        TeamType: 'TeamTypes',
+        Project: 'Projects'
     }
 }
