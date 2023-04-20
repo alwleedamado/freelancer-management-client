@@ -40,7 +40,7 @@ export class FreelancerFormComponent extends BaseDialogForm<Freelancer> {
   }
 
   override afterFormInit(entity?: Partial<Freelancer>): void {
-    entity.telephones.forEach(e => {
+    entity!.telephones.forEach(e => {
       const control = new FormControl({
         telephoneNumber: e.telephoneNumber,
         phoneType: e.phoneType
@@ -57,6 +57,7 @@ export class FreelancerFormComponent extends BaseDialogForm<Freelancer> {
     return this.form.get('telephones') as FormArray;
   }
   deletePhone(ctrl) {
-    this.phoneArray.controls = this.phoneArray.controls.filter(c => c != ctrl)
+    if (this.entity)
+      this.phoneArray.controls = this.phoneArray.controls.filter(c => c != ctrl)
   }
 }
