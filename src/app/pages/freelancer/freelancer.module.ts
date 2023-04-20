@@ -15,12 +15,19 @@ import { ChipModule } from 'primeng/chip';
 import { TeamListComponent } from './components/team/team-list/team-list.component';
 import { TeamFormComponent } from './components/team/team-form/team-form.component';
 import { statics as FreelancersStatics } from 'freelancer/freelancer.statics'
-import { SpecialityFormComponent } from './components/speciality/speciality-form/speciality-form.component';
+import { SpecialityFormComponent } from './components/speciality/speciality-form/speciality-type-form.component';
 import { SpecialityListComponent } from './components/speciality/speciality-list/speciality-list.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
 import { ProjectListComponent } from './components/project/project-list/project-list.component';
 import { ProjectFormComponent } from './components/project/project-form/project-form.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { TeamMembersListComponent } from './components/team/team-members-list/team-members-list.component';
+import { TeamMemberFormComponent } from './components/team/team-member-form/team-member-form.component';
+import { TeamViewComponent } from './components/team/team-view/team-view.component';
+import { TeamSingleDetailComponent } from './components/team/team-single-detail/team-single-detail.component';
+import { SpecialityTypeEffects } from './state/speciality-type/speciality-type.effects';
+import { TeamEffects } from './state/team/team.effects';
 
 
 @NgModule({
@@ -34,14 +41,21 @@ import { ProjectFormComponent } from './components/project/project-form/project-
     TeamListComponent,
     TeamFormComponent,
     ProjectListComponent,
-    ProjectFormComponent
+    ProjectFormComponent,
+    TeamMembersListComponent,
+    TeamMemberFormComponent,
+    TeamViewComponent,
+    TeamSingleDetailComponent
   ],
   imports: [
     SharedModule,
     ChipModule,
     StoreModule.forFeature(statics.moduleName, reducres),
     EffectsModule.forFeature([
-      FreelancerEffects
+      FreelancerEffects,
+      SpecialityTypeEffects,
+      TeamEffects,
+      
     ]),
     RouterModule.forChild([
       { path: '', component: FreelancerListComponent },
@@ -53,7 +67,8 @@ import { ProjectFormComponent } from './components/project/project-form/project-
     ]),
     FormFieldsModule,
     ToastModule,
-    MessageModule
+    MessageModule,
+    AutoCompleteModule
   ]
 })
 export class FreelancerModule { }
