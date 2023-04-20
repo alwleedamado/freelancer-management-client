@@ -64,6 +64,7 @@ export abstract class BaseForm<T> implements IBaseForm, IGuardableForm {
     save(closeAfter: boolean = true) {
         if (this.form.valid) {
             this.closeAfterAction = closeAfter;
+            this.entity = this.formValue();
             if (this.id)
                 this.store.dispatch(this.actions.updateEntity({ id: this.id, data: this.formValue() }));
             else

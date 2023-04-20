@@ -62,6 +62,14 @@ export abstract class BaseDialogForm<T> extends BaseForm<T> {
         else {
             this.initForm();
         }
+        combineLatest([
+            this.store.select(this.selectors.selectLastCreatedEntity),
+            this.store.select(this.selectors.selectAddResult)
+        ]).pipe(takeWhile(( _ => this.componentActive)))
+            .subscribe(([id, result]) => {
+                if (this.closeAfterAction && result == communicationResult.success)
+                    this.closeForm({ ...this.entity, id })
+            })
 
         this.storeSubscriptions();
 
