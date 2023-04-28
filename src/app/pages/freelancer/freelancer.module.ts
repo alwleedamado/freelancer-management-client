@@ -28,6 +28,7 @@ import { TeamViewComponent } from './components/team/team-view/team-view.compone
 import { TeamSingleDetailComponent } from './components/team/team-single-detail/team-single-detail.component';
 import { SpecialityTypeEffects } from './state/speciality-type/speciality-type.effects';
 import { TeamEffects } from './state/team/team.effects';
+import { AddSpecialityFormComponent } from './components/freelancer/add-speciality-form/add-speciality-form.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { TeamEffects } from './state/team/team.effects';
     TeamMembersListComponent,
     TeamMemberFormComponent,
     TeamViewComponent,
-    TeamSingleDetailComponent
+    TeamSingleDetailComponent,
+    AddSpecialityFormComponent
   ],
   imports: [
     SharedModule,

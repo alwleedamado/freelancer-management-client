@@ -1,5 +1,5 @@
 export interface SpecialityType {
-    id?: string | number;
+    id: string | number;
     name: string;
     description: string;
 }

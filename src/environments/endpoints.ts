@@ -5,6 +5,7 @@ export const endpoints = {
         SpecialityType: 'SpecialityTypes',
         TeamType: 'TeamTypes',
         Team: 'Teams',
-        Project: 'Projects'
+        Project: 'Projects',
+        Specialities: 'specialities'
     }
 }

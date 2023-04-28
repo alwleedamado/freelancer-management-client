@@ -6,7 +6,7 @@ import { SpecialityTypeActoins, SpecialityTypeDataSource, SpecialityTypeSelector
 import { LayoutUtilsService } from 'shared/services/layout-utils.service';
 import { DefaultListView } from 'utils/base-components/list/default-list-view';
 import { NgrxDataSource } from 'utils/ngrx/ngrx.datasource';
-import { SpecialityFormComponent } from '../speciality-form/speciality-form.component';
+import { SpecialityFormComponent } from '../speciality-form/speciality-type-form.component';
 
 @Component({
   selector: 'app-speciality-list',

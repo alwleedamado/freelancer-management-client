@@ -7,7 +7,7 @@ import { SpecialityType } from '../models/speciality-type';
 @Injectable({
 	providedIn: 'root'
 })
-export class SpecialityService extends DataService<SpecialityType> {
+export class SpecialityTypeService extends DataService<SpecialityType> {
 
 	constructor(http: HttpClient) {
 		let url = environment.baseUrl + environment.Freelancer.base + environment.Freelancer.SpecialityType;

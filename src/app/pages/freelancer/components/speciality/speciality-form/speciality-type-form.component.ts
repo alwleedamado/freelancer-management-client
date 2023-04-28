@@ -11,8 +11,8 @@ import { BaseDialogForm } from 'utils/base-components/form/base-dialog-form';
 
 @Component({
   selector: 'app-speciality-form',
-  templateUrl: './speciality-form.component.html',
-  styleUrls: ['./speciality-form.component.scss']
+  templateUrl: './speciality-type-form.component.html',
+  styleUrls: ['./speciality-type-form.component.scss']
 })
 export class SpecialityFormComponent extends BaseDialogForm<SpecialityType> {
   title: string;
@@ -31,7 +31,8 @@ export class SpecialityFormComponent extends BaseDialogForm<SpecialityType> {
   createForm(): void {
     this.form = new FormGroup({
       id: new FormControl(),
-      name: new FormControl()
+      name: new FormControl(),
+      description: new FormControl()
     })
   }
   storeSubscriptions(): void {

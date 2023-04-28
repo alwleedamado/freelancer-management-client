@@ -1,0 +1,8 @@
+<form [formGroup]="form">
+    <div class="p-fluid p-formgrid grid">
+        <app-form-field label="Name" class="field col-12">
+            <app-speciality-type-input formControlName="specialityTypeId"></app-speciality-type-input>
+        </app-form-field>
+    </div>
+</form>
+<app-form-footer (cancel)="close()" (save)="save()"></app-form-footer>

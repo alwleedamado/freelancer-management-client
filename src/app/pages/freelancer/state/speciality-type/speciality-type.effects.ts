@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { AppState } from 'core/reducers';
-import { BaseEffect } from 'utils/ngrx/ngrx.effects';
 import { SpecialityType } from 'pages/freelancer/models/speciality-type';
-import { actions } from './speciality-type.actions';
-import { Actions } from '@ngrx/effects';
-import { SpecialityService } from 'pages/freelancer/services/speciality-type.service';
-import { selectors } from './speciality-type.selectors';
+import { SpecialityTypeService } from 'pages/freelancer/services/speciality-type.service';
 import { LayoutUtilsService } from 'shared/services/layout-utils.service';
+import { BaseEffect } from 'utils/ngrx/ngrx.effects';
+import { actions } from './speciality-type.actions';
+import { selectors } from './speciality-type.selectors';
 
 
 @Injectable()
@@ -18,7 +18,7 @@ export class SpecialityTypeEffects extends BaseEffect<SpecialityType> {
 
     constructor(
         actions$: Actions,
-        private service: SpecialityService,
+        private service: SpecialityTypeService,
         store: Store<AppState>,
         layoutUtils: LayoutUtilsService
 

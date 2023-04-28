@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpecialityFormComponent } from './speciality-form.component';
+import { SpecialityFormComponent } from './speciality-type-form.component';
 
 describe('SpecialityFormComponent', () => {
   let component: SpecialityFormComponent;

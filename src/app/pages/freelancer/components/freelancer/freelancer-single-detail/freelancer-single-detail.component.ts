@@ -6,6 +6,7 @@ import { AppState } from 'core/reducers';
 import { LayoutUtilsService } from 'shared/services/layout-utils.service';
 import { FreelancerActoins, FreelancerSelectors } from 'pages/freelancer/state/freelancer';
 import { FreelancerFormComponent } from '../freelancer-form/freelancer-form.component';
+import { AddSpecialityFormComponent } from '../add-speciality-form/add-speciality-form.component';
 @Component({
   selector: 'app-freelancer-single-detail',
   templateUrl: './freelancer-single-detail.component.html',
@@ -21,5 +22,9 @@ export class FreelancerSingleDetailComponent extends BaseSingleDetail<Freelancer
 
   constructor(store: Store<AppState>, layoutUtilService: LayoutUtilsService) {
     super(store, layoutUtilService, FreelancerFormComponent, FreelancerActoins, FreelancerSelectors)
+  }
+
+  addSpeciality() {
+    this.layout.open(AddSpecialityFormComponent, {data: {freelancerId: this.entity?.id}})
   }
 }
