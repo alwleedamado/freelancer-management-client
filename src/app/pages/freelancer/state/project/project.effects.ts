@@ -11,7 +11,7 @@ import { Project } from 'pages/freelancer/models/project';
 
 
 @Injectable()
-export class FreelancerEffects extends BaseEffect<Project> {
+export class ProjectEffects extends BaseEffect<Project> {
     override idSelector(entity: Project) {
         return entity.id //select the id property
     }

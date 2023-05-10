@@ -1,0 +1,9 @@
+<app-card [title]="title" *ngIf="(entity$|async) as i">
+    <app-single-view-toolbar (edit)="edit()" (delte)="delete()">
+        <button pButton class="p-button p-button-outlined p-button-primary" (click)="addSpeciality()">Add
+            Speciality</button>
+    </app-single-view-toolbar>
+    <div class="grid">
+        <app-field-view class="col-12 md:col-6" label="Name" [value]="i.name"></app-field-view>
+    </div>
+</app-card>

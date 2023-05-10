@@ -5,7 +5,8 @@ export const statics = {
         SpecialityType: "SpecialityType",
         Team: 'Team',
         TeamType: 'TeamType',
-        Project: 'Project'
+        Project: 'Project',
+        TeamMember: 'TeamMember'
     },
     labels: {
         Freelancer: 'Freelancer',
