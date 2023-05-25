@@ -1,4 +1,4 @@
-import { AuditEntity } from "./audit-entity";
+import { AuditEntity } from "../../../shared/models/audit-entity";
 import { PhoneType } from "./phone-type";
 
 export interface Telephone extends AuditEntity {

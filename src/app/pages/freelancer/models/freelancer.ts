@@ -1,4 +1,4 @@
-import { AuditEntity } from "./audit-entity";
+import { AuditEntity } from "../../../shared/models/audit-entity";
 import { Gender } from "shared/models/gender";
 import { Telephone } from "./telephone";
 import { SpecialityType } from "./speciality-type";
