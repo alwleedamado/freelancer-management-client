@@ -1,8 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'core/reducers';
+import { TeamActoins } from 'pages/team/state/team';
 import { TeamMemberDataSource } from 'pages/team/state/team/team-member.datasource';
 import { LayoutUtilsService } from 'shared/services/layout-utils.service';
+import { TeamMemberFormComponent } from '../team-member-form/team-member-form.component';
 
 @Component({
   selector: 'app-team-members-list',
@@ -19,11 +21,13 @@ export class TeamMembersListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
+    this.store.dispatch(TeamActoins.getAllMembers({teamId: this.teamId}))
   }
 
   ngOnDestroy(): void {
     this.componentActive = false;
   }
-  
+  add() {
+    this.layout.open(TeamMemberFormComponent, {data: {teamId: this.teamId}})
+  }
 }

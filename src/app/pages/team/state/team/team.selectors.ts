@@ -17,9 +17,10 @@ export interface TeamSelectors extends IngrxSelectors<Team> {
 export const selectors: TeamSelectors = {
     ...createSelectors(adapter, stateSateSelector)
 }
-
+const { selectAll } = teamMemberAdapter.getSelectors()
+const selectTeammembersData = createSelector(teamMemberSelector, selectAll)
 export const teamMemberSelectors = {
-    ...teamMemberAdapter.getSelectors(),
+    selectTeammembersData,
     selectAddRequest: createSelector(teamMemberSelector, state => state.addMemberRequest),
     selectUpdateRequest: createSelector(teamMemberSelector, state => state.updateMemberRequest),
     selectRemoveRequest: createSelector(teamMemberSelector, state => state.removeMemberRequest),

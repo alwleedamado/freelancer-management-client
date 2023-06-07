@@ -27,6 +27,5 @@ export class TeamListComponent extends DefaultListView<Team> {
     store: Store<AppState>) {
     super(layoutUtils, TeamFormComponent, store, TeamActoins, TeamSelectors);
     this.dataSource = new TeamDataSource(this.store)
-    layoutUtils.showInfo('test', 'testetet')
   }
 }

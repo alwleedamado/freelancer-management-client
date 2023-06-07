@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FlreelancerInputComponent } from './flreelancer-input.component';
+import { FreelancerInputComponent } from './flreelancer-input.component';
 
-describe('FlreelancerInputComponent', () => {
-  let component: FlreelancerInputComponent;
-  let fixture: ComponentFixture<FlreelancerInputComponent>;
+describe('FreelancerInputComponent', () => {
+  let component: FreelancerInputComponent;
+  let fixture: ComponentFixture<FreelancerInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FlreelancerInputComponent ]
+      declarations: [ FreelancerInputComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FlreelancerInputComponent);
+    fixture = TestBed.createComponent(FreelancerInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

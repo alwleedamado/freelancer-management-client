@@ -8,7 +8,7 @@ import { BaseEffect } from 'utils/ngrx/ngrx.effects';
 import { actions } from './team.actions';
 import { selectors } from './team.selectors';
 import { TeamService } from 'team/services/team.service';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 
@@ -28,6 +28,15 @@ export class TeamEffects extends BaseEffect<Team> {
         super(actions$, actions, service, store, selectors, layoutUtils)
     }
 
+    getMembers$ = createEffect(() => this.actions$
+        .pipe(
+            ofType(actions.getAllMembers),
+            switchMap(({ teamId }) => this.service.getMembers(teamId).pipe(
+                map(payload => actions.getAllMembersSuccess({ payload })),
+                catchError(error => of(actions.getAllMembersFauiled({ error }))))
+            )
+        )
+    )
     addNewMember$ = createEffect(() => this.actions$
         .pipe(
             ofType(actions.addMember),

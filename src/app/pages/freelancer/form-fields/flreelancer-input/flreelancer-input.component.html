@@ -1,1 +1,1 @@
-<p-tableRadioButton [(ngModel)]="value"></p-tableRadioButton>
+<p-autoComplete [(ngModel)]="value" [suggestions]="options$|async"  (completeMethod)="fillData($event.query)" field="name"></p-autoComplete>

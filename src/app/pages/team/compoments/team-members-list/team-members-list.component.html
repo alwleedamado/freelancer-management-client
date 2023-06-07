@@ -1,5 +1,5 @@
-<app-card [title]="title">
-	<app-list-toolbar></app-list-toolbar>
+<app-card [title]="title" [hideGoBackBtn]="true">
+	<app-list-toolbar createBtnLabel="Add Member" (create)="add()"></app-list-toolbar>
 	<div class="table-responsive">
 
 		<p-table [rows]="(dataSource.items$|async).length"
@@ -11,15 +11,14 @@
 					</th>
 					<th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon>
 					</th>
-					<th pSortableColumn="role">Role <p-sortIcon field="name"></p-sortIcon></th>
+					<th pSortableColumn="role">Speciality Type <p-sortIcon field="name"></p-sortIcon></th>
 				</tr>
 			</ng-template>
 			<ng-template pTemplate="body" let-item>
 				<tr>
 					<td>{{item.id}}</td>
 					<td>{{item.name}}</td>
-					<td>{{item.email}}</td>
-					<td>{{item.telephones[0]?.telephoneNumber}}</td>
+					<td>{{item.specialityType}}</td>
 					<td>
 						<app-table-actions (view)="viewEntity(item.id)"></app-table-actions>
 					</td>

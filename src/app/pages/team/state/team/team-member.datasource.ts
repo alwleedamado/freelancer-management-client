@@ -15,7 +15,6 @@ export class TeamMemberDataSource {
     error$: Observable<CustomError>
 
     constructor(private Store: Store<AppState>) {
-        this.items$ = this.Store.select(teamMemberSelectors.selectAll);
-        
+        this.items$ = this.Store.select(teamMemberSelectors.selectTeammembersData);
     }
 }

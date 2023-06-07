@@ -1,1 +1,15 @@
-<p>team-member-form works!</p>
+<form>
+
+    <div class="p-fluid p-formgrid grid" [formGroup]="form">
+        <app-form-field label="Speciality" class="field col-12 md:col-6">
+            <app-speciality-type-input formControlName="specialityTypeId"></app-speciality-type-input>
+        </app-form-field>
+        <app-form-field label="Speciality" class="field col-12 md:col-6">
+            <app-flreelancer-input [specialityTypeId]="specialityTypeId" formControlName="freelancerId"></app-flreelancer-input>
+        </app-form-field>
+        <app-form-field label="Speciality" class="field col-12 md:c>ol-6">
+            <input pInputText formControlName="salary">
+        </app-form-field>
+    </div>
+</form>
+<app-form-footer (cancel)="close()" (save)="save()"></app-form-footer>

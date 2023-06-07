@@ -34,10 +34,10 @@ const initialState = ngrxInitialState<Team>(adapter, {
 export const stateReducer = createReducer(initialState, ...getDefaultOns(adapter, actions),
     on(actions.addMemberSuccess, (state: State, action) => {
         let newState: State = structuredClone(state)
-        newState.teamMembers = teamMemberAdapter.addOne(action.payload, {
-            ...state.teamMembers,
-            addMemberRequest: communicationResult.success
-        })
+        // newState.teamMembers = teamMemberAdapter.addOne(action.payload, {
+        //     ...state.teamMembers,
+        //     addMemberRequest: communicationResult.success
+        // })
         return newState
     }),
     on(actions.addMember, (state) => {
@@ -72,6 +72,12 @@ export const stateReducer = createReducer(initialState, ...getDefaultOns(adapter
         let newState: State = structuredClone(state)
         newState.teamMembers = { ...newState.teamMembers, updateMemberRequest: communicationResult.fail }
         return newState
+    }),
+    on(actions.getAllMembersSuccess, (state: State, {payload}) => {
+        let newState: State = structuredClone(state)
+        newState.teamMembers  =  teamMemberAdapter.addMany(payload, state.teamMembers)
+        return newState;
+
     })
 )
 
