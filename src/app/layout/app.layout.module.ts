@@ -18,6 +18,8 @@ import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import { ToastModule } from 'primeng/toast';
+import { NavMenubarComponent } from './nav-menubar.component';
+import { MenubarModule } from 'primeng/menubar';
 
 @NgModule({
     declarations: [
@@ -27,6 +29,7 @@ import { ToastModule } from 'primeng/toast';
         AppMenuComponent,
         AppSidebarComponent,
         AppLayoutComponent,
+        NavMenubarComponent,
     ],
     imports: [
         BrowserModule,
@@ -41,7 +44,8 @@ import { ToastModule } from 'primeng/toast';
         RippleModule,
         RouterModule,
         AppConfigModule,
-        ToastModule
+        ToastModule,
+        MenubarModule
     ],
     exports: [AppLayoutComponent]
 })

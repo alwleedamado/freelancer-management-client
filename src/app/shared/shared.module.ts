@@ -7,8 +7,8 @@ import { TableListModule } from 'modules/table-list/table-list.module';
 
 import { DynamicDialogModule } from 'primeng/dynamicdialog'
 import { ToastModule } from 'primeng/toast';
-import {ProgressSpinnerModule} from 'primeng/progressspinner'
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { MenubarModule } from 'primeng/menubar';
 
 @NgModule({
   declarations: [],
@@ -25,7 +25,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner'
     BaseFormInputsModule,
     EntityModule,
     ProgressSpinnerModule,
-    MessageModule
+    MessageModule,
+    MenubarModule
 
   ]
 })
