@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-list-toolbar',
@@ -7,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class ListToolbarComponent {
   @Output('create') createEvent = new EventEmitter();
+  @Input() createBtnLabel = "Create New"
   constructor() { }
   create() {
     this.createEvent.emit()
