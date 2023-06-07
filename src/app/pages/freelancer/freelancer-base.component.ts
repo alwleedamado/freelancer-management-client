@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { navMenuService } from 'app/layout/service/nav-menu.service';
 import { statics } from './freelancer.statics';
 
@@ -10,14 +10,19 @@ const navMenu = [
 
 @Component({
   selector: 'app-freelancer-base',
-  template:`<router-outlet></router-outlet>`
+  template: `<router-outlet></router-outlet>`
 })
-export class FreelancerBaseComponent implements OnInit {
+export class FreelancerBaseComponent implements OnInit, OnDestroy {
 
-  constructor(menuService: navMenuService) {
+  constructor(private menuService: navMenuService) {
     menuService.onMenuChange(navMenu)
   }
+  
   ngOnInit(): void {
+  }
+  
+  ngOnDestroy(): void {
+    this.menuService.reset();
   }
 
 }

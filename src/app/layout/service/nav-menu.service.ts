@@ -12,4 +12,8 @@ export class navMenuService {
     onMenuChange(menu) {
         this._menuSubject.next(menu)
     }
+
+    reset() {
+        this._menuSubject.next([])
+    }
 }
